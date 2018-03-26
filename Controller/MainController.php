@@ -22,7 +22,7 @@ class MainController extends BaseController
                 $data = [
                     'errors' => $response,
                 ];
-                return $this->render('register.html.twig', $data);
+                return $this->render('createAccount.html.twig', $data);
             }
         } else {
             return $this->render('createAccount.html.twig');
