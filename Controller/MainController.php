@@ -30,6 +30,15 @@ class MainController extends BaseController
     }
     public function loginAction()
     {
-        return $this->render(' login.html.twig');
+        $formManager = new FormManager();
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            if ($formManager->isValidUsername() === false) {
+                if ($formManager->checkPassword() === true) {
+                }
+            } else {
+                return $this->render('login.html.twig');
+            }
+        }
+        return $this->render('login.html.twig');
     }
 }

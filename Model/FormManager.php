@@ -29,22 +29,22 @@ class FormManager
         if ($errors !== []) {
             return $errors;
         } else {
-            var_dump($firstname, $lastname, $email, $password, $username);
             $dbm = DBManager::getInstance();
             $pdo = $dbm->getPdo();
-            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`) VALUES (NULL, :firstname, :lastname, :email, :password, :username)');
+            $creation = date('Y-m-d H:i:s');
+            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation)');
             $result->bindParam(':firstname', $firstname);
             $result->bindParam(':lastname', $lastname);
             $result->bindParam(':email', $email);
             $result->bindParam(':password', $password);
             $result->bindParam(':username', $username);
+            $result->bindParam(':creation', $creation);
             $result->execute();
             return true;
         }
     }
     public function isValidUsername($username)
     {
-
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $result = $pdo->query("SELECT username FROM users");
