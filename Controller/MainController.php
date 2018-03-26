@@ -28,8 +28,16 @@ class MainController extends BaseController
             return $this->render('createAccount.html.twig');
         }
     }
+
+
     public function loginAction()
     {
+        if(isset($_POST['username']) && (isset($_POST['password'])) {
+
+            $manager = new FormManager();
+
+
+        }
         return $this->render(' login.html.twig');
     }
 }
