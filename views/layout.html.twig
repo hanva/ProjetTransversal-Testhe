@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
+    {% for error in errors %}
+          <article>
+            {{error}}
+          </article>
+        {% endfor %}
     {% block content %}{% endblock %}
+  
   </body>
 </html>
