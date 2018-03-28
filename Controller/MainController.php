@@ -2,11 +2,17 @@
 
 require_once 'Cool/BaseController.php';
 require_once 'Model/FormManager.php';
-
+session_start();
 class MainController extends BaseController
 {
     public function homeAction()
     {
+        if (empty($_SESSION['username']) === false) {
+            $data = [
+                'username' => $_SESSION['username'],
+            ];
+            return $this->render('home.html.twig', $data);
+        }
         return $this->render('home.html.twig');
     }
     public function createAccountAction()
@@ -29,7 +35,6 @@ class MainController extends BaseController
         }
     }
 
-
     public function loginAction()
     {
         $formManager = new FormManager();
@@ -39,10 +44,10 @@ class MainController extends BaseController
                     return $this->redirectToRoute("home");
                 }
             } else {
-                $data=[
-                    'error'=>'Utilisateur ou mot de passe incorect'
+                $data = [
+                    'error' => 'Utilisateur ou mot de passe incorect',
                 ];
-                return $this->render('login.html.twig',$data);
+                return $this->render('login.html.twig', $data);
             }
         }
         return $this->render('login.html.twig');
