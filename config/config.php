@@ -13,5 +13,6 @@ $config = [
         'home' => 'Main:home',
         'login' => 'Main:login',
         'createAccount' => 'Main:createAccount',
+        'disconnect'=> 'Main:disconnect',
     ],
 ];
