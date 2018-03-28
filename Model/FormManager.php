@@ -69,4 +69,9 @@ class FormManager
             return false;
         }
     }
+
+    public function disconnect() {
+
+        session_destroy();
+    }
 }

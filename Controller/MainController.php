@@ -52,4 +52,17 @@ class MainController extends BaseController
         }
         return $this->render('login.html.twig');
     }
+
+    public function disconnectAction () {
+
+        if(!empty($_SESSION['username']) === false ) {
+            return $this->redirectToRoute('home');
+        }
+        else {
+            $formManager = new FormManager();
+            $formManager->disconnect();
+            return $this->redirectToRoute('home');
+        }
+
+    }
 }
