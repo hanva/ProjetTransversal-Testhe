@@ -56,4 +56,19 @@ class FormManager
         }
         return true;
     }
+    public function checkPassword($username, $password) {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+
+        $result = $pdo->query("SELECT password FROM users WHERE username = '$username'");
+        $mdp = $result->fetch(PDO::FETCH_COLUMN, 0);
+        if($mdp ===$password){
+            $_SESSION['username'] = $username;
+            session_start();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

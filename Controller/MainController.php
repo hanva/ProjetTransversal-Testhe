@@ -28,15 +28,21 @@ class MainController extends BaseController
             return $this->render('createAccount.html.twig');
         }
     }
+
+
     public function loginAction()
     {
         $formManager = new FormManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($formManager->isValidUsername() === false) {
-                if ($formManager->checkPassword() === true) {
+            if ($formManager->isValidUsername($_POST['username']) === false) {
+                if ($formManager->checkPassword($_POST['username'], $_POST['password']) === true) {
+                    return $this->redirectToRoute("home");
                 }
             } else {
-                return $this->render('login.html.twig');
+                $data=[
+                    'error'=>'Utilisateur ou mot de passe incorect'
+                ];
+                return $this->render('login.html.twig',$data);
             }
         }
         return $this->render('login.html.twig');
