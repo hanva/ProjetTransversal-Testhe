@@ -11,8 +11,16 @@
           <article>
             {{error}}
           </article>
-        {% endfor %}
+    {% endfor %}
+        <nav>
+          {% if username is defined %}
+              <a href="?action=home">Home</a>
+              <a href="?action=disconnect">disconnect</a>
+          {% else %}
+              <a href="?action=login">Login</a>
+              <a href="?action=createAccount">Sign In</a>
+          {% endif %}
+        </nav>
     {% block content %}{% endblock %}
-  
   </body>
 </html>
