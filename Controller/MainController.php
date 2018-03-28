@@ -32,12 +32,19 @@ class MainController extends BaseController
 
     public function loginAction()
     {
-        if(isset($_POST['username']) && (isset($_POST['password'])) {
-
-            $manager = new FormManager();
-
-
+        $formManager = new FormManager();
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            if ($formManager->isValidUsername($_POST['username']) === false) {
+                if ($formManager->checkPassword($_POST['username'], $_POST['password']) === true) {
+                    return $this->redirectToRoute("home");
+                }
+            } else {
+                $data=[
+                    'error'=>'Utilisateur ou mot de passe incorect'
+                ];
+                return $this->render('login.html.twig',$data);
+            }
         }
-        return $this->render(' login.html.twig');
+        return $this->render('login.html.twig');
     }
 }
