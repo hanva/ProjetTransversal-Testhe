@@ -39,7 +39,7 @@ class MainController extends BaseController
     {
         $formManager = new FormManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($formManager->isValidUsername($_POST['username']) === false) {
+            if ($formManager->isValid($_POST['username'], 'username') === false) {
                 if ($formManager->checkPassword($_POST['username'], $_POST['password']) === true) {
                     return $this->redirectToRoute("home");
                 }
@@ -53,12 +53,12 @@ class MainController extends BaseController
         return $this->render('login.html.twig');
     }
 
-    public function disconnectAction () {
+    public function disconnectAction()
+    {
 
-        if(!empty($_SESSION['username']) === false ) {
+        if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
-        }
-        else {
+        } else {
             $formManager = new FormManager();
             $formManager->disconnect();
             return $this->redirectToRoute('home');
