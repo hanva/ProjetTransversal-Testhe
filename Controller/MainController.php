@@ -39,16 +39,21 @@ class MainController extends BaseController
     {
         $formManager = new FormManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($formManager->isValid($_POST['username'], 'username') === false) {
-                if ($formManager->checkPassword($_POST['username'], $_POST['password']) === true) {
+            if ($response = $formManager->isValid($_POST['username'], 'username') === false) {
+                $response = $formManager->checkPassword($_POST['username'], $_POST['password']);
+                if ($response === true) {
                     return $this->redirectToRoute("home");
+                } else {
+                    $data = [
+                        'error' => $response,
+                    ];
+                    return $this->render('login.html.twig', $data);
                 }
-            } else {
-                $data = [
-                    'error' => 'Utilisateur ou mot de passe incorect',
-                ];
-                return $this->render('login.html.twig', $data);
             }
+            $data = [
+                'error' => 'Utilisateur ou mot de passe incorect',
+            ];
+            return $this->render('login.html.twig', $data);
         }
         return $this->render('login.html.twig');
     }
@@ -63,6 +68,15 @@ class MainController extends BaseController
             $formManager->disconnect();
             return $this->redirectToRoute('home');
         }
-
+    }
+    public function validEmailAction()
+    {
+        if (!empty($_GET['username']) === true && !empty($_GET['key']) === true) {
+            $formManager = new FormManager();
+            $formManager->validEmail($_GET['username'], ($_GET['key']));
+            return $this->redirectToRoute('login');
+        } else {
+            return $this->redirectToRoute('home');
+        }
     }
 }
