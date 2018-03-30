@@ -1,8 +1,11 @@
 <?php
+namespace Controller;
 
-require_once 'Cool/BaseController.php';
-require_once 'Model/FormManager.php';
+use Cool\BaseController;
+use Model\FormManager;
+
 session_start();
+
 class MainController extends BaseController
 {
     public function homeAction()

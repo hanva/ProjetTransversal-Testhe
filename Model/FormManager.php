@@ -1,8 +1,12 @@
 <?php
 
-require_once 'Cool/DBManager.php';
-require_once 'vendor/autoload.php';
+namespace Model;
+
+use Cool\DBManager;
+use Model\FormManager;
 use PHPMailer\PHPMailer\PHPMailer;
+
+require_once 'vendor/autoload.php';
 
 class FormManager
 {
