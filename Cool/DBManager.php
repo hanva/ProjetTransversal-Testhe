@@ -2,21 +2,24 @@
 
 namespace Cool;
 
+use PDO;
+
 class DBManager
 {
     private $pdo;
 
     private function __construct()
     {
-        global $config;
+        global $params;
 
-        $address = $config['db']['host'];
-        if ($config['db']['port']) {
-            $address .= ':' . $config['db']['port'];
+        $address = $params['db']['host'];
+        if ($params['db']['port']) {
+            $address .= ':' . $params['db']['port'];
         }
-        $dsn = 'mysql:dbname=' . $config['db']['name'] . ';host=' . $address;
-        $user = $config['db']['user'];
-        $password = $config['db']['password'];
+
+        $dsn = 'mysql:dbname=' . $params['db']['name'] . ';host=' . $address;
+        $user = $params['db']['user'];
+        $password = $params['db']['password'];
         $pdo = new PDO($dsn, $user, $password);
         $this->setPdo($pdo);
     }

@@ -5,3 +5,4 @@ routes:
     createAccount: 'Main:createAccount'
     disconnect:  'Main:disconnect'
     validEmail: 'Main:validEmail'
+    validated: 'Main:validated'

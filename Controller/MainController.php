@@ -3,6 +3,7 @@ namespace Controller;
 
 use Cool\BaseController;
 use Model\FormManager;
+use Model\UserManager;
 
 session_start();
 
@@ -26,7 +27,7 @@ class MainController extends BaseController
             $formManager = new FormManager();
             $response = $formManager->register($_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['password_repeat']);
             if ($response === true) {
-                return $this->redirectToRoute("login");
+                return $this->redirectToRoute("validated");
             } else {
                 $data = [
                     'errors' => $response,
@@ -40,10 +41,10 @@ class MainController extends BaseController
 
     public function loginAction()
     {
-        $formManager = new FormManager();
+        $userManager = new UserManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($response = $formManager->isValid($_POST['username'], 'username') === false) {
-                $response = $formManager->checkPassword($_POST['username'], $_POST['password']);
+            if ($response = $userManager->isValid($_POST['username'], 'username') === false) {
+                $response = $userManager->checkPassword($_POST['username'], $_POST['password']);
                 if ($response === true) {
                     return $this->redirectToRoute("home");
                 } else {
@@ -60,15 +61,17 @@ class MainController extends BaseController
         }
         return $this->render('login.html.twig');
     }
-
+    public function validatedAction()
+    {
+        return $this->render('validated.html.twig');
+    }
     public function disconnectAction()
     {
-
         if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
         } else {
-            $formManager = new FormManager();
-            $formManager->disconnect();
+            $userManager = new UserManager();
+            $userManager->disconnect();
             return $this->redirectToRoute('home');
         }
     }
