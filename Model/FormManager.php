@@ -4,7 +4,6 @@ namespace Model;
 
 use Cool\DBManager;
 use Model\FormManager;
-use PDO;
 
 class FormManager
 {
@@ -54,20 +53,6 @@ class FormManager
             $userManager = new UserManager();
             $userManager->sendEmail($email, $username);
             return true;
-        }
-    }
-    public function validEmail($username, $key)
-    {
-        $dbm = DBManager::getInstance();
-        $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT cle FROM users WHERE username = '$username'");
-        $result = $result->fetch(PDO::FETCH_COLUMN, 0);
-        if ($key === $result) {
-            $valid = "yes";
-            $stmt = $pdo->prepare("UPDATE users SET valid=:valid WHERE username = :username");
-            $stmt->bindParam(':valid', $valid);
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
         }
     }
 }

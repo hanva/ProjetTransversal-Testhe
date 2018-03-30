@@ -42,7 +42,7 @@ class UserManager
         $mail->Password = "lethecestbon";
         $mail->setFrom('no-replys@gmail.fr');
         $mail->Subject = "Activer votre compte";
-        $mail->Body = 'Bienvenue sur VotreSite,
+        $mail->Body = 'Bienvenue sur Thesthe,
         Pour activer votre compte, veuillez cliquer sur le lien ci dessous
         ou copier/coller dans votre navigateur internet.
 
@@ -52,6 +52,20 @@ class UserManager
         Ceci est un mail automatique, Merci de ne pas y répondre.';
         $mail->addAddress($email);
         $mail->send();
+    }
+    public function validEmail($username, $key)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT cle FROM users WHERE username = '$username'");
+        $result = $result->fetch(PDO::FETCH_COLUMN, 0);
+        if ($key === $result) {
+            $valid = "yes";
+            $stmt = $pdo->prepare("UPDATE users SET valid=:valid WHERE username = :username");
+            $stmt->bindParam(':valid', $valid);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+        }
     }
     public function isValid($username, $type)
     {

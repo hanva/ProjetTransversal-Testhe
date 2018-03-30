@@ -78,8 +78,8 @@ class MainController extends BaseController
     public function validEmailAction()
     {
         if (!empty($_GET['username']) === true && !empty($_GET['key']) === true) {
-            $formManager = new FormManager();
-            $formManager->validEmail($_GET['username'], ($_GET['key']));
+            $userManager = new UserManager();
+            $userManager->validEmail($_GET['username'], ($_GET['key']));
             return $this->redirectToRoute('login');
         } else {
             return $this->redirectToRoute('home');
