@@ -52,7 +52,7 @@ class FormManager
             $result->bindParam(':moderator', $valid);
             $result->bindParam(':superadmin', $valid);
             $result->execute();
-            $userManager = new UserManager();
+            $userManager = new MailManager();
             $userManager->sendEmail($email, $username);
             return true;
         }
