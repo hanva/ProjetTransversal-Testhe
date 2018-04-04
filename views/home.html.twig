@@ -1,8 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block page_title %}Cool Framework{% endblock %}
-
-{% block content %}
+ {% block nav %}
    {% if username is not defined %}
 <div class="loginpopup">
             <a class="login">Login</a>
@@ -11,10 +10,13 @@
             <a class="register">Register</a>
           </div>
             {% endif %}
+        {% endblock %}
+        {% block content %}
 <h1>
   Welcome to the Cool Framework<br>
   <small>By SUP'Internet DEV 2020</small>
 </h1>
+
 {% endblock %}
   {% block script %}
     <script src="assets/script/home.js"></script>
