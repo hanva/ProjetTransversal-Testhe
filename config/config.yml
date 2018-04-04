@@ -6,3 +6,4 @@ routes:
     disconnect:  'Main:disconnect'
     validEmail: 'Main:validEmail'
     validated: 'Main:validated'
+    addArticle: 'Article:addArticle'
