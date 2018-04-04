@@ -3,15 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock %}</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
   </head>
   <body>
-  {{ error }}
-    {% for error in errors %}
-          <article>
-            {{error}}
-          </article>
-    {% endfor %}
         <nav>
           {% if username is defined %}
               <a href="?action=home">Home</a>
@@ -21,6 +15,16 @@
               <a href="?action=createAccount">Sign In</a>
           {% endif %}
         </nav>
+  <div class="blockErrors">
+    {{ error }}
+    {% for error in errors %}
+          <article>
+            {{error}}
+          </article>
+    {% endfor %}
+  </div>
     {% block content %}{% endblock %}
+    {% block script %}{% endblock %}
+    <script src="assets/script/script.js"></script>
   </body>
 </html>

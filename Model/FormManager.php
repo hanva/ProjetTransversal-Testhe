@@ -4,7 +4,6 @@ namespace Model;
 
 use Cool\DBManager;
 use Model\FormManager;
-use PDO;
 
 class FormManager
 {
@@ -41,7 +40,7 @@ class FormManager
             $cle = null;
             $valid = "no";
             $creation = date('Y-m-d H:i:s');
-            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation, :cle,:valid)');
+            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)');
             $result->bindParam(':firstname', $firstname);
             $result->bindParam(':lastname', $lastname);
             $result->bindParam(':email', $email);
@@ -50,24 +49,12 @@ class FormManager
             $result->bindParam(':creation', $creation);
             $result->bindParam(':cle', $cle);
             $result->bindParam(':valid', $valid);
+            $result->bindParam(':moderator', $valid);
+            $result->bindParam(':superadmin', $valid);
             $result->execute();
             $userManager = new UserManager();
             $userManager->sendEmail($email, $username);
             return true;
-        }
-    }
-    public function validEmail($username, $key)
-    {
-        $dbm = DBManager::getInstance();
-        $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT cle FROM users WHERE username = '$username'");
-        $result = $result->fetch(PDO::FETCH_COLUMN, 0);
-        if ($key === $result) {
-            $valid = "yes";
-            $stmt = $pdo->prepare("UPDATE users SET valid=:valid WHERE username = :username");
-            $stmt->bindParam(':valid', $valid);
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
         }
     }
 }
