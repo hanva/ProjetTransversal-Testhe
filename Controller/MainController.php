@@ -32,10 +32,10 @@ class MainController extends BaseController
                 $data = [
                     'errors' => $response,
                 ];
-                return $this->render('createAccount.html.twig', $data);
+                return $this->render('home.html.twig', $data);
             }
         } else {
-            return $this->render('createAccount.html.twig');
+            return $this->render('home.html.twig');
         }
     }
 
@@ -57,9 +57,9 @@ class MainController extends BaseController
             $data = [
                 'error' => 'Utilisateur ou mot de passe incorect',
             ];
-            return $this->render('login.html.twig', $data);
+            return $this->render('home.html.twig', $data);
         }
-        return $this->render('login.html.twig');
+        return $this->render('home.html.twig');
     }
     public function validatedAction()
     {

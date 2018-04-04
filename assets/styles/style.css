@@ -1,4 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 small
 {
     color: purple;
+}
+.none{
+    display: none;
+}
+.block{
+    display: block;
 }
