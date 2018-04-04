@@ -40,7 +40,7 @@ class FormManager
             $cle = null;
             $valid = "no";
             $creation = date('Y-m-d H:i:s');
-            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation, :cle,:valid)');
+            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)');
             $result->bindParam(':firstname', $firstname);
             $result->bindParam(':lastname', $lastname);
             $result->bindParam(':email', $email);
@@ -49,6 +49,8 @@ class FormManager
             $result->bindParam(':creation', $creation);
             $result->bindParam(':cle', $cle);
             $result->bindParam(':valid', $valid);
+            $result->bindParam(':moderator', $valid);
+            $result->bindParam(':superadmin', $valid);
             $result->execute();
             $userManager = new UserManager();
             $userManager->sendEmail($email, $username);
