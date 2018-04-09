@@ -1,8 +1,7 @@
 var dataArray = [];
 var login = document.querySelector(".login");
-var logpop = document.querySelector('.loginpopup');
 var register = document.querySelector(".register");
-var registerpop = document.querySelector(".registerpopup");
+var popup = document.querySelector(".popup");
 
 function getRequest(url, action = "") {
     var request = new XMLHttpRequest();
@@ -10,23 +9,21 @@ function getRequest(url, action = "") {
     request.onload = function () {
         data = (request.responseText);
         dataArray.push(data);
-        if (action)
-            action(data);
+        if (action) {
+            printpop(dataArray);
+        }
     }
     request.send();
 }
-function popup(data) {
-    login.innerHTML += dataArray[0];
-    register.innerHTML += dataArray[1];
-    var loginform = document.querySelector(".loginform");
-    var registerform = document.querySelector(".registerform");
+function printpop(data) {
     login.onclick = function () {
-        loginform.classList.remove("none");
-        registerform.classList += " none";
+        popup.innerHTML = dataArray[0];
+        popup.classList.remove("none");
     }
     register.onclick = function () {
-        registerform.classList.remove("none");
-        loginform.classList += " none";
+        popup.innerHTML = dataArray[1];
+        popup.classList.remove("none");
+        testcool("ok");
     }
 }
 getRequest('./popup/login.html');

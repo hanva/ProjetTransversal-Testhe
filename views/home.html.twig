@@ -3,12 +3,9 @@
 {% block page_title %}Cool Framework{% endblock %}
  {% block nav %}
    {% if username is not defined %}
-<div class="loginpopup">
-            <a class="login">Login</a>
-          </div>
-          <div class="registerpopup">
-            <a class="register">Register</a>
-          </div>
+          <div class="popup none"></div>
+            <button class="login">Login</button>
+            <button class="register">Register</button>
             {% endif %}
         {% endblock %}
         {% block content %}
@@ -19,5 +16,8 @@
 
 {% endblock %}
   {% block script %}
+  {% if username is not defined %}
     <script src="assets/script/home.js"></script>
+    <script src="assets/script/register.js"></script>
+        {% endif %}
   {% endblock %}

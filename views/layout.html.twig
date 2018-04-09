@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock %}</title>
-    <link rel="stylesheet" href="assets/styles/style.css">
+    {% block style %}
+      <link rel="stylesheet" href="assets/styles/style.css">
+    {% endblock %}
   </head>
   <body>
         <nav>
@@ -12,7 +14,7 @@
               <a href="?action=addArticle">add an article</a>
               <a href="?action=disconnect">disconnect</a>
           {% endif %}
-             {% block nav %}{% endblock %}
+          {% block nav %}{% endblock %}
         </nav>
   <div class="blockErrors">
     {{ error }}
