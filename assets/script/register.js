@@ -40,6 +40,3 @@ function testcool(form) {
         }
     }
 }
-function test() {
-    alert("ok");
-}
