@@ -12,6 +12,7 @@ small
 .block{
     display: block;
 }
+
 header {
     height: 12vh;
     display: flex;

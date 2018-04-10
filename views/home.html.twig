@@ -2,15 +2,11 @@
 
 {% block page_title %}Cool Framework{% endblock %}
         {% block content %}
-<h1>
-  Welcome to the Cool Framework<br>
-  <small>By SUP'Internet DEV 2020</small>
-</h1>
- {% for article in articles %}
-          <article>
-          {{article}}
-          </article>
-          {% endfor %}  
+{% for article in articles %}
+        <article>
+        {{article}}
+        </article>
+        {% endfor %}  
         <section class="home-content">
             <div class="home-item first-item">
                 <div class="left-bloc"></div>
