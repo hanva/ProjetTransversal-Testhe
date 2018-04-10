@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block page_title %}{% endblock %}</title>
-    <link rel="stylesheet" href="assets/styles/style.css">
+    {% block style %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/styles/style.css">
+    {% endblock %}
 </head>
 <body>
-<nav>
+<header>
     {% if username is defined %}
         <a href="?action=home">Home</a>
         <a href="?action=addArticle">add an article</a>
         <a href="?action=disconnect">disconnect</a>
     {% endif %}
-    {% block nav %}{% endblock %}
-</nav>
+    {% block nav %}
+        <header>
+            <div class="logo">testhé</div>
+            <div class="menu">
+                <span class="menu-items">actualithés <img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
+                <span class="menu-items">degusthe <img class="little-arrow" src="assets/styles/chevron-bas.png"></i></span>
+                <span class="menu-items">histoire</span>
+            </div>
+            <div class="menu-right-items">
+                <div class="my-account">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </header>
+    {% endblock %}
+</header>
 <div class="blockErrors">
     {{ error }}
     {% for error in errors %}
@@ -25,5 +45,6 @@
 {% block content %}{% endblock %}
 {% block script %}{% endblock %}
 <script src="assets/script/script.js"></script>
+
 </body>
 </html>

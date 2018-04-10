@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Cool Framework{% endblock %}
+        {% block content %}
+
+        <section class="home-content">
+
+            <div class="home-item first-item">
+                <div class="left-bloc"></div>
+                <div class="right-bloc"></div>
+            </div>
+            <div class="home-item news-item">2</div>
+            <div class="home-item battle-item">3</div>
+            <div class="home-item receipts-item">4</div>
+            <footer class="home-item footer-item">4</footer>
+
+            
+        </section>
+
+        {% endblock %}
+  {% block script %}
+      {% if username is not defined %}
+          <script src="assets/script/home.js"></script>
+          <script src="assets/script/register.js"></script>
+      {% endif %}
+  {% endblock %}
