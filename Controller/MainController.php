@@ -14,8 +14,10 @@ class MainController extends BaseController
     {
         $articleManager = new ArticleManager();
         $articles = $articleManager->seeAllArticles();
+        $articlekeys = $articleManager->seeArticleKeys();
         $data = [
             'articles' => $articles,
+            'articlekeys' => $articlekeys,
         ];
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
