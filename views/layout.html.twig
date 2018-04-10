@@ -16,7 +16,6 @@
         <a href="?action=disconnect">disconnect</a>
     {% endif %}
     {% block nav %}
-        <header>
             <div class="logo">testhé</div>
             <div class="menu">
                 <span class="menu-items">actualithés <img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
@@ -33,7 +32,6 @@
                     <button class="login">Login</button>
                 </div>
             </div>
-        </header>
     {% endblock %}
 </header>
 <div class="blockErrors">
@@ -44,7 +42,10 @@
         </article>
     {% endfor %}
 </div>
-{% block content %}{% endblock %}
+<div class="popup"></div>
+{% block content %}
+    
+{% endblock %}
 {% block script %}{% endblock %}
 <script src="assets/script/script.js"></script>
 
