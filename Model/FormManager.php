@@ -57,4 +57,20 @@ class FormManager
             return true;
         }
     }
+    public function addArticle($username, $title, $tag, $pic, $content)
+    {
+        $filesManager = new FilesManager();
+        $filesManager->upload($pic);
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $creation = date('Y-m-d H:i:s');
+        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `username`, `title`, `tag`, `pic`, `content`,`creation`) VALUES (NULL, :username, :title, :tag, :pic, :content, :creation)');
+        $result->bindParam(':username', $username);
+        $result->bindParam(':title', $title);
+        $result->bindParam(':tag', $tag);
+        $result->bindParam(':pic', $pic);
+        $result->bindParam(':content', $content);
+        $result->bindParam(':creation', $creation);
+        $result->execute();
+    }
 }

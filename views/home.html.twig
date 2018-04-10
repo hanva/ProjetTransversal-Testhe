@@ -13,7 +13,11 @@
   Welcome to the Cool Framework<br>
   <small>By SUP'Internet DEV 2020</small>
 </h1>
-
+ {% for article in articles %}
+          <article>
+          {{article}}
+          </article>
+          {% endfor %}  
 {% endblock %}
   {% block script %}
   {% if username is not defined %}

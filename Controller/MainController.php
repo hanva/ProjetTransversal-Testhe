@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Cool\BaseController;
+use Model\ArticleManager;
 use Model\FormManager;
 use Model\UserManager;
 
@@ -11,13 +12,16 @@ class MainController extends BaseController
 {
     public function homeAction()
     {
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->seeAllArticles();
+        $data = [
+            'articles' => $articles,
+        ];
         if (empty($_SESSION['username']) === false) {
-            $data = [
-                'username' => $_SESSION['username'],
-            ];
-            return $this->render('home.html.twig', $data);
+            $data['username'] = $_SESSION['username'];
         }
-        return $this->render('home.html.twig');
+        return $this->render('home.html.twig', $data);
+
     }
     public function createAccountAction()
     {

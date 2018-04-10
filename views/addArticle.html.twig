@@ -3,7 +3,7 @@
 {% block page_title %}Cool Framework{% endblock %}
 
 {% block content %}
-        <form action="?action=addArticle" method="POST" name="form">
+        <form action="?action=addArticle" method="POST" name="articleform" enctype="multipart/form-data">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title">
                 <select name="select" id="monselect">
@@ -11,13 +11,11 @@
                     <option value="valeur2" selected>Valeur 2</option>
                     <option value="valeur3">Valeur 3</option>
                 </select>
-            <input type="file"accept=".jpg, .jpeg, .png">
-                <label for="content">Contenu</label>
+            <input  type="file" accept=".jpg, .jpeg, .png"  id="picture" name="picture">
+            <label for="content">Contenu</label>
             <textarea name="content" rows="10" cols="50">
-                Vous pouvez écrire quelque
-                chose ici.
             </textarea>
-            <button type="submit" class="btn btn-primary">Post</button>
+            <button type="submit">Post</button>
         </form>
 {% endblock %}
 {% block script %}
