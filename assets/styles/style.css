@@ -112,3 +112,64 @@ header {
     height: 35vh;
     width: 100%;
 }
+
+.popup {
+    width: 40%;
+    background-color: blueviolet;
+    position: absolute;
+    top: 25vh;
+    left: 60vh;
+    z-index: 5;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.registerform {
+    height: 45vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form[name="register-form"] button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 35%;
+    font-size: 14px;
+}
+
+.registerform input{
+    margin-bottom: 2vh;
+    width: 55%;
+    height: 2.5vh;
+}
+
+.registerform label{
+    width: 45%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    margin-right: 30%;
+
+}
+
+.loginform {
+    height: 45vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50vh;
+}
+
+
+
+
