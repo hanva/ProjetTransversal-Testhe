@@ -12,7 +12,7 @@ class ArticleManager
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $result = $pdo->query("SELECT * FROM articles  ORDER BY id DESC");
-        $posts = $result->fetch(PDO::FETCH_ASSOC);
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
 }
