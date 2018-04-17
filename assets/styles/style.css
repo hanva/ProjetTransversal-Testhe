@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "DomaineDispNar";
+    src: url("/assets/styles/font/DomaineDispNar-Regular.otf");
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -116,4 +121,120 @@ header {
 .footer-item {
     height: 35vh;
     width: 100%;
+}
+
+/* .popup {
+    width: 100%;
+    height: 100%;
+    margin-top: -12vh;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 4;
+} */
+
+.login-content, .register-content {
+    display: flex;
+    flex-direction: row;
+    width: 58%;
+    position: absolute;
+    top: 17vh;
+    left: 21%;
+    z-index: 5;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-left-side, .register-left-side {
+    background-color: #C7E7DF;
+    text-align: center;
+    width: 50%;
+}
+
+.login-left-side h1 , .register-left-side h1 {
+    margin-top: 10%; 
+    text-transform: uppercase;
+    color: white;
+}
+
+.login-left-side img , .register-left-side img {
+    width: 50%;
+    height: 40%;
+    margin-top: 15%;
+}
+
+.login-right-side, .register-right-side {
+    background-color: white;
+    width: 50%;
+    height: 70vh;
+}
+
+.form-content {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 16%;
+}
+
+.form-content input {
+    width: 100%;
+    height: 3vh;
+    font-size: 8px;
+    color: #BBD9D1;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.form-content h1 {
+    margin-bottom: 15%; 
+}
+
+.form-content label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.login-password {
+    margin-top: 8%;
+    margin-bottom: 15%;
+}
+
+.form-content button {
+    background-color: #BBD9D1;
+    border: none;
+    color: white;
+    padding: 8px 23px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 5%;
+}
+
+.form-content p {
+    font-size: 10px;
+}
+
+.login-bot, .register-bot {
+    text-align: center;
+}
+
+.register-password {
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+
+.close-popup {
+    height: 10%;
+}
+
+.fa-times {
+    margin-left: 93%;
+    margin-top: 3%;
+}
+
+.fa-times:hover {
+    font-size: 20px;
 }

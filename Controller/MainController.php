@@ -6,6 +6,7 @@ use Model\ArticleManager;
 use Model\FormManager;
 use Model\MailManager;
 use Model\UserManager;
+use Model\MailManager;
 
 class MainController extends BaseController
 {

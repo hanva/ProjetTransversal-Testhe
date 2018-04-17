@@ -1,5 +1,5 @@
 function testcool(form) {
-    document.forms['register-form'].elements['firstname'].focus();
+    // document.forms['register-form'].elements['username'].focus();
     var blockErrors = document.querySelector(".blockErrors");
     document.forms['register-form'].elements['email'].onkeyup = function () {
         var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
