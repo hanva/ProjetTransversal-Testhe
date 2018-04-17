@@ -4,9 +4,8 @@ namespace Controller;
 use Cool\BaseController;
 use Model\ArticleManager;
 use Model\FormManager;
+use Model\MailManager;
 use Model\UserManager;
-
-session_start();
 
 class MainController extends BaseController
 {

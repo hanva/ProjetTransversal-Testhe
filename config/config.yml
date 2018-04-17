@@ -7,3 +7,6 @@ routes:
     validEmail: 'Main:validEmail'
     validated: 'Main:validated'
     addArticle: 'Moderator:addArticle'
+    bo: 'Admin:bo'
+    modifyDataBase: 'Admin:modifyDataBase'
+    deleteUser: 'Admin:deleteUser'

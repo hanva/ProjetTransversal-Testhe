@@ -7,7 +7,14 @@ use PDO;
 
 class UserManager
 {
-
+    public function getUserId($username)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT id from users WHERE username = '$username'");
+        $result = $result->fetch(PDO::FETCH_COLUMN, 0);
+        return $result;
+    }
     public function disconnect()
     {
         session_destroy();
@@ -33,7 +40,7 @@ class UserManager
         $valid = $pdo->query("SELECT valid FROM users WHERE username = '$username'");
         $valid = $valid->fetch(PDO::FETCH_COLUMN, 0);
         $mdp = $result->fetch(PDO::FETCH_COLUMN, 0);
-        if ($mdp === $password) {
+        if ($mdp === sha1($password)) {
             if ($valid !== "yes") {
                 return "Vous devez d'abord valider votre email pour vous connecter";
             }
