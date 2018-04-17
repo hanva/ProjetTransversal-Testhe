@@ -17,11 +17,10 @@ class ArticleManager
     }
     public function seeArticleKeys()
     {
-
         $data = [];
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("select column_name from information_schema.columns where table_name = 'articles'");
+        $result = $pdo->query("select column_name from information_schema.columns where table_name = 'articles' AND TABLE_SCHEMA='testhe'");
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         foreach ($posts as $value) {
             foreach ($value as $key) {

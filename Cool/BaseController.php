@@ -2,6 +2,8 @@
 
 namespace Cool;
 
+session_start();
+
 class BaseController
 {
     protected function render($view, $data = [])

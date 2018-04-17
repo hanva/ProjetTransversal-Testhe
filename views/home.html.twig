@@ -8,7 +8,9 @@
             <article>
                 {% for value in article %}
                     {% if articlekeys[count] == "content" %}
-                        {{value}}
+                        {{value|raw}}
+                    {% elseif articlekeys[count] == "pic" %}
+                        <img class='{{articlekeys[count]}}' width="50" height="50" src='./uploads/{{value}}'>
                     {% else %}
                         <div class='{{articlekeys[count]}}' name='{{articlekeys[count]}}'>{{value}}</div>
                     {% endif %}

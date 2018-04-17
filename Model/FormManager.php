@@ -37,6 +37,7 @@ class FormManager
         } else {
             $dbm = DBManager::getInstance();
             $pdo = $dbm->getPdo();
+            $encryptedpassword = sha1($password);
             $cle = null;
             $valid = "no";
             $creation = date('Y-m-d H:i:s');
@@ -44,7 +45,7 @@ class FormManager
             $result->bindParam(':firstname', $firstname);
             $result->bindParam(':lastname', $lastname);
             $result->bindParam(':email', $email);
-            $result->bindParam(':password', $password);
+            $result->bindParam(':password', $encryptedpassword);
             $result->bindParam(':username', $username);
             $result->bindParam(':creation', $creation);
             $result->bindParam(':cle', $cle);
@@ -57,15 +58,13 @@ class FormManager
             return true;
         }
     }
-    public function addArticle($username, $title, $tag, $pic, $content)
+    public function addArticle($userid, $title, $tag, $pic, $content)
     {
-        $filesManager = new FilesManager();
-        $filesManager->upload($pic);
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $creation = date('Y-m-d H:i:s');
-        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `username`, `title`, `tag`, `pic`, `content`,`creation`) VALUES (NULL, :username, :title, :tag, :pic, :content, :creation)');
-        $result->bindParam(':username', $username);
+        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `user_id`, `title`, `tag`, `pic`, `content`,`creation`) VALUES (NULL, :user_id, :title, :tag, :pic, :content, :creation)');
+        $result->bindParam(':user_id', $userid);
         $result->bindParam(':title', $title);
         $result->bindParam(':tag', $tag);
         $result->bindParam(':pic', $pic);
