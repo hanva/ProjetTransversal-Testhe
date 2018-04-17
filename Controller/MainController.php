@@ -5,6 +5,7 @@ use Cool\BaseController;
 use Model\ArticleManager;
 use Model\FormManager;
 use Model\UserManager;
+use Model\MailManager;
 
 session_start();
 
@@ -14,8 +15,10 @@ class MainController extends BaseController
     {
         $articleManager = new ArticleManager();
         $articles = $articleManager->seeAllArticles();
+        $articlekeys = $articleManager->seeArticleKeys();
         $data = [
             'articles' => $articles,
+            'articlekeys' => $articlekeys,
         ];
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];

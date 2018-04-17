@@ -1,31 +1,31 @@
-<div class=" registerform">
-    <h1>Sign In</h1>
-    <br>
-    <form action="?action=createAccount" method="POST" name="register-form">
-        <div class="form-group">
-            <label for="firstname">First name</label>
-            <input type="text" name="firstname">
+<div class="register-content">
+        <div class="register-left-side">
+            <h1>REGISTERRRRR</h1><br>
+            <p>C'est votre première visite? Notre communauthé</p>
+            <img src="assets/styles/theiere.png">
         </div>
-        <div class="form-group">
-            <label for="lastname">Last name</label>
-            <input type="text" name="lastname">
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password">
-        </div>
-        <div class="form-group">
-            <label for="password_repeat">Repeat password</label>
-            <input type="password" name="password_repeat">
-        </div>
-        <button type="submit">Sign In</button>
-    </form>
+        <form action="?action=register" method="POST" name="register-form"" class=" register-right-side">
+            <div class="close-popup">
+                    <i class="fas fa-times"></i>
+            </div>
+            <div class="form-content">
+            <h1>M'inscrire</h1>
+            <div class="register-infos register-password">
+                    <label for="email">Adresse email</label>
+                    <input type="email" name="email" placeholder="entrer votre adresse email">
+                 </div>
+            <div class="register-infos">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" placeholder="entrer votre nom d'utilisateur">
+            </div>
+            <div class="register-infos login-password">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" placeholder="entrer votre mot de passe">
+             </div>
+             <div class="register-bot">
+                    <button type="submit" class="btn btn-primary">M'inscrire</button>
+             </div>
+    
+            </div>
+        </form>
 </div>
