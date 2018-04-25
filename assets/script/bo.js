@@ -2,19 +2,14 @@ var info = document.querySelectorAll(".info");
 var savebtn = document.querySelectorAll(".Save");
 var deletebtn = document.querySelectorAll(".deleteUser");
 
-for (var i = 0; i < info.length; i++) {
-    info[i].onclick = function () {
-    }
-}
-
 function json(response) {
     return response.json()
 }
 for (var i = 0; i < deletebtn.length; i++) {
     deletebtn[i].onclick = function () {
-        var classname = this.classList[1];
-        /([0-9]+)/.exec(classname);
-        id = (RegExp.$1);
+        var userId = this.id;
+        /([0-9]+)/.exec(userId);
+        var id = (RegExp.$1);
         var url = '?action=deleteUser&id=' + id;
         fetch(url, {
             method: 'get',
@@ -25,7 +20,8 @@ for (var i = 0; i < deletebtn.length; i++) {
         })
             .then(json)
             .then(function (data) {
-                var el = document.querySelector("." + classname);
+                var el = document.getElementById(userId);
+                console.log(el);
                 var parent = el.parentNode;
                 parent.removeChild(el);
             })
@@ -38,14 +34,15 @@ for (var i = 0; i < deletebtn.length; i++) {
 for (var i = 0; i < savebtn.length; i++) {
     savebtn[i].onclick = function () {
         var data = {};
-        var classname = this.classList[1];
+        var id = this.id;
         var j = 0;
-        var content = document.querySelectorAll("." + classname)[0].childNodes;
+        var content = document.getElementById(id).children;
         for (i = 0; i < content.length; i++) {
-            if (content[i].value !== undefined) {
-                if (content[i].value.length === 0)
-                    content[i].value.length === null;
-                data[userkeys[j]] = content[i].value;
+            var value = content[i].innerHTML;
+            if (value !== null) {
+                if (value.length === 0)
+                    value.length === null;
+                data[userkeys[j]] = value;
                 j++;
             }
         }

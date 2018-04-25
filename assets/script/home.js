@@ -76,7 +76,6 @@ function createAccount() {
         blockErrors.innerHTML = errorMessage;
         return false;
     }
-
     else {
         var url = '?action=createAccount';
         fetch(url, {
@@ -84,7 +83,7 @@ function createAccount() {
             headers: {
                 "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
             },
-            body: 'email=' + JSON.stringify(email) + '&username=' + JSON.stringify(nickname) + '&password=' + JSON.stringify(password),
+            body: 'email=' + email + '&username=' + nickname + '&password=' + password,
             credentials: 'include'
         })
             .then(json)

@@ -43,8 +43,12 @@ class FormManager
             $result->bindParam(':superadmin', $valid);
             $result->execute();
             $userManager = new MailManager();
-            $userManager->sendEmail($email, $username);
-            return true;
+            if ($userManager->sendEmail($email, $username) === true) {
+                return true;
+            } else {
+                array_push($errors, "error while sending the mail");
+                return $errors;
+            }
         }
     }
     public function addArticle($userid, $title, $tag, $pic, $content)
