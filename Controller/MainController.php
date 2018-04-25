@@ -26,29 +26,21 @@ class MainController extends BaseController
     }
     public function createAccountAction()
     {
-        if (!empty($_POST['firstname']) && !empty($_POST['lastname'])
-            && !empty($_POST['username']) && !empty($_POST['email'])
-            && !empty($_POST['password']) && !empty($_POST['password_repeat'])) {
+        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
             $formManager = new FormManager();
-            $response = $formManager->register($_POST['firstname'], $_POST['lastname'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['password_repeat']);
+            $response = $formManager->register($_POST['username'], $_POST['email'], $_POST['password']);
             if ($response === true) {
-                return $this->redirectToRoute("validated");
+                return json_encode(['status' => "ok"]);
             } else {
-                $data = [
-                    'errors' => $response,
-                ];
-                return $this->render('home.html.twig', $data);
+                return json_encode(['status' => $response]);
             }
-        } else {
-            return $this->render('home.html.twig');
         }
     }
-
     public function loginAction()
     {
         $userManager = new UserManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($response = $userManager->isValid($_POST['username'], 'username') === false) {
+            if ($response = $userManager->isUsernameValid($_POST['username']) === false) {
                 $response = $userManager->checkPassword($_POST['username'], $_POST['password']);
                 if ($response === true) {
                     return $this->redirectToRoute("home");

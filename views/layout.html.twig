@@ -32,8 +32,10 @@
                 </div>
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <button class="register">Register</button>
-                    <button class="login">Login</button>
+                    {% if username is null %}
+                        <button class="register">Register</button>
+                        <button class="login">Login</button>
+                    {% endif %}
                 </div>
             </div>
         {% endblock %}

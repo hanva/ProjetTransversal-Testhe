@@ -42,7 +42,9 @@ for (var i = 0; i < savebtn.length; i++) {
         var j = 0;
         var content = document.querySelectorAll("." + classname)[0].childNodes;
         for (i = 0; i < content.length; i++) {
-            if (content[i].value !== undefined && content[i].value.length > 0) {
+            if (content[i].value !== undefined) {
+                if (content[i].value.length === 0)
+                    content[i].value.length === null;
                 data[userkeys[j]] = content[i].value;
                 j++;
             }
