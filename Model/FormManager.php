@@ -7,30 +7,21 @@ use Model\FormManager;
 
 class FormManager
 {
-    public function register($firstname, $lastname, $username, $email, $password, $password_repeat)
+    public function register($username, $email, $password)
     {
         $userManager = new UserManager();
         $errors = [];
-        if ($userManager->isValid($username, 'username') === false) {
+        if ($userManager->isUsernameValid($username) === false) {
             array_push($errors, "username already taken");
         }
-        if ($userManager->isValid($email, 'email') === false) {
+        if ($userManager->isEmailValid($email) === false) {
             array_push($errors, "email already taken");
         }
         if (strlen($username) < 4) {
             array_push($errors, "4 letters needed for an username");
         }
-        if (strlen($firstname) < 1) {
-            array_push($errors, "Enter a first name");
-        }
-        if (strlen($lastname) < 1) {
-            array_push($errors, "Enter a last name");
-        }
         if (strlen($password) < 6) {
             array_push($errors, "Password too short(min6)");
-        }
-        if ($password !== $password_repeat) {
-            array_push($errors, "Passwords does not match");
         }
         if ($errors !== []) {
             return $errors;
@@ -41,9 +32,7 @@ class FormManager
             $cle = null;
             $valid = "no";
             $creation = date('Y-m-d H:i:s');
-            $result = $pdo->prepare('INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, :firstname, :lastname, :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)');
-            $result->bindParam(':firstname', $firstname);
-            $result->bindParam(':lastname', $lastname);
+            $result = $pdo->prepare("INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, '', '', :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)");
             $result->bindParam(':email', $email);
             $result->bindParam(':password', $encryptedpassword);
             $result->bindParam(':username', $username);

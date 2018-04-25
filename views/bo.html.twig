@@ -2,16 +2,27 @@
 
 {% block page_title %}Cool Framework{% endblock %}
 {% block content %}
-
-    {% for users in infos %}
-        <div class='flex row user{{users.id}}'>
-            {% for info in users %}
-                <input type="text" class='{{info}} info contenteditable="true"' value="{{info}}">
+    <div class=" flex column">
+        <div class='flex row keys'>
+            {% for key in userkeys %}
+                <div class='flex row {{key}}'>{{key}}
+                </div>
             {% endfor %}
-            <button class="Save user{{users.id}}">Save</button>
-            <button class="deleteUser user{{users.id}}">Delete User</button>
         </div>
-    {% endfor %}
+        {% for users in infos %}
+            <div class='flex row user{{users.id}}'>
+                {% for info in users %}
+                    {% if info == "id" %}
+                        salut
+                    {% else %}
+                        <input type="text" class='{{info}} info contenteditable="true"' value="{{info}}">
+                    {% endif %}
+                {% endfor %}
+                <button class="Save user{{users.id}}">Save</button>
+                <button class="deleteUser user{{users.id}}">Delete User</button>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 {% block script %}
     <script>
