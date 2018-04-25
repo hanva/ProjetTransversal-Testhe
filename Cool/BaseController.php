@@ -21,8 +21,12 @@ class BaseController
         exit();
     }
 
-    protected function redirectToRoute($route)
+    protected function redirectToRoute($route, $args = '')
     {
-        $this->redirect('?action=' . $route);
+        $url = '?action=' . $route;
+        if ($args != '') {
+            $url .= '&' . $args;
+        }
+        $this->redirect($url);
     }
 }

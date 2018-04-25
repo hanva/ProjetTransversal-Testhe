@@ -19,11 +19,24 @@ class UserManager
     {
         session_destroy();
     }
-    public function isValid($username, $type)
+    public function isUsernameValid($username)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT $type FROM users");
+        $result = $pdo->query("SELECT username FROM users");
+        $posts = $result->fetchAll(PDO::FETCH_COLUMN, 0);
+        foreach ($posts as $value) {
+            if ($value === $username) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public function isEmailValid($username)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT email FROM users");
         $posts = $result->fetchAll(PDO::FETCH_COLUMN, 0);
         foreach ($posts as $value) {
             if ($value === $username) {
