@@ -1,6 +1,6 @@
 @font-face {
     font-family: "DomaineDispNar";
-    src: url("/assets/styles/font/DomaineDispNar-Bold.otf");
+    src: url("font/DomaineDispNar-Regular.otf");
 }
 
 *{
@@ -26,7 +26,7 @@ small
 /* header css */
 
 header {
-    font-family: DomaineDispNar;
+    font-family: "DomaineDispNar";
     height: 12vh;
     display: flex;
     flex-direction: row;
@@ -116,6 +116,66 @@ header {
 .news-item {
     height: 70vh;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-content {
+    width: 85%;
+    height: 85%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-side-news {
+    background-color: blue;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.left-side-news button {
+    width: min-content;
+}
+
+.news-title {
+    margin-bottom: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 4em;
+}
+
+.news-text {
+    font-size: 2em;
+    margin: 0 5%;
+}
+
+.news-text button {
+    background-color: #C7E7DF; /* Green */
+    border: none;
+    color: white;
+    padding: 9px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.right-side-news {
+    background-color: red;
+    height: 100%;
+    width: 50%;
+}
+
+.underline {
+    background-color: #FBF2F3;
+    height: 5px;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 5px;
 }
 
 /* tea battle section css */
