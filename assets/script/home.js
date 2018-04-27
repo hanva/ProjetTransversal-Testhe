@@ -24,7 +24,6 @@ function printpop(data) {
         closePopup.onclick = function () {
             closePop();
         };
-
     }
     register.onclick = function () {
         popup.innerHTML = dataArray[1];
@@ -42,7 +41,6 @@ function printpop(data) {
 }
 
 function closePop() {
-    console.log('coucou');
     popup.classList.add("none");
 }
 function emailverif() {
