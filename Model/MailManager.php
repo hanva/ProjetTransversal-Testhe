@@ -20,24 +20,25 @@ class MailManager
         $stmt->execute();
 
         $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '465';
-        $mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true,
-            ),
-        );
-        $mail->isHTML();
-        $mail->Username = "testhepourtous@gmail.com";
-        $mail->Password = "lethecestbon";
-        $mail->setFrom('no-replys@gmail.fr');
-        $mail->Subject = "Activer votre compte";
-        $mail->Body = 'Bienvenue sur Thesthe,
+        try {
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = '465';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true,
+                ),
+            );
+            $mail->isHTML();
+            $mail->Username = "testhepourtous@gmail.com";
+            $mail->Password = "lethecestbon";
+            $mail->setFrom('no-replys@gmail.fr');
+            $mail->Subject = "Activer votre compte";
+            $mail->Body = 'Bienvenue sur Thesthe,
         Pour activer votre compte, veuillez cliquer sur le lien ci dessous
         ou copier/coller dans votre navigateur internet.
 
@@ -45,8 +46,12 @@ class MailManager
 
         ---------------
         Ceci est un mail automatique, Merci de ne pas y répondre.';
-        $mail->addAddress($email);
-        $mail->send();
+            $mail->addAddress($email);
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
     public function validEmail($username, $key)
     {

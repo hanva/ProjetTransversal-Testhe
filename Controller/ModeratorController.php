@@ -28,4 +28,16 @@ class ModeratorController extends BaseController
         ];
         return $this->render('addArticle.html.twig', $data);
     }
+    public function modifyArticleAction()
+    {
+        if (!empty($_SESSION['username']) === false) {
+            return $this->redirectToRoute('home');
+        } else if (!empty($_POST['btn']) && intval($_POST['btn'])) {
+            die;
+        }
+        $data = [
+            'username' => $_SESSION['username'],
+        ];
+        return $this->render('modifyArticle.html.twig', $data);
+    }
 }

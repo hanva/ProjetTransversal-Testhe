@@ -4,22 +4,23 @@
 {% block content %}
     {% for article in articles %}
         {% set count = 0 %}
-        <form action="?action=modifyArticle" method="POST" name="form">
-            <article>
-                {% for value in article %}
-                    {% if articlekeys[count] == "content" %}
-                        {{value|raw}}
-                    {% elseif articlekeys[count] == "pic" %}
-                        <img class='{{articlekeys[count]}}' width="50" height="50" src='./uploads/{{value}}'>
-                    {% else %}
-                        <div class='{{articlekeys[count]}}' name='{{articlekeys[count]}}'>{{value}}</div>
-                    {% endif %}
-                    {% set count = count + 1 %}
-                {% endfor %}
-            </article>
-        </form>
+        <article>
+            {% for value in article %}
+                {% if articlekeys[count] == "content" %}
+                    <div name="content" class="content">{{value|raw}}</div>
+                {% elseif articlekeys[count] == "pic" %}
+                    <img name="image" class='{{articlekeys[count]}}' width=" 50" height=" 50" src='./uploads/{{value}}'>
+                {% else %}
+                    <p name='{{articlekeys[count]}}' class='{{articlekeys[count]}}'>{{value}}</p>
+                {% endif %}
+                {% set count = count + 1 %}
+            {% endfor %}
+            <form action="?action=modifyArticle" method="POST">
+                <button class='btn' name='btn' value="{{article.id}}">Modify</button>
+            </form>
+        </article>
     {% endfor %}
-    <section class="home-content">
+    <section class=" home-content" =" home-content" "=" home-content""="home-content" "" ">
         <div class="home-item first-item">
             <div class="left-bloc"></div>
             <div class="right-bloc"></div>
