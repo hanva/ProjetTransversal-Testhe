@@ -13,9 +13,23 @@
                 </tr>
             </thead>
             {% for users in infos %}
-                <tr id="user{{users.id}}" class=' container-fluid  user{{users.id}}'>
+                <tr class=' container-fluid  user{{users.id}}'>
                     {% for info in users %}
-                        <th class='{{info}} info' value="{{info}}" contenteditable="true">{{info}}</th>
+                        {% if info == "0" or info == "1" %}
+                            <th>
+                                <select class="test" id="user{{users.id}}">
+                                    {% if info == "0"%}
+                                        <option>{{info}}</option>
+                                        <option>1</option>
+                                    {% else %}
+                                        <option>{{info}}</option>
+                                        <option>0</option>
+                                    {% endif %}
+                                </select>
+                            </th>
+                        {% else %}
+                            <th id="user{{users.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                        {% endif %}
                     {% endfor %}
                     <th>
                         <button id="user{{users.id}}" class=" btn btn-success Save">Save</button>

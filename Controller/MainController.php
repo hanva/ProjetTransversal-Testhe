@@ -36,6 +36,10 @@ class MainController extends BaseController
             }
         }
     }
+    public function changePasswordAction()
+    {
+        die;
+    }
     public function loginAction()
     {
         $userManager = new UserManager();
@@ -48,15 +52,11 @@ class MainController extends BaseController
                     $data = [
                         'error' => $response,
                     ];
-                    return $this->render('login.html.twig', $data);
+                    return $this->redirectToRoute("home", $response);
                 }
             }
-            $data = [
-                'error' => 'Utilisateur ou mot de passe incorect',
-            ];
-            return $this->render('home.html.twig', $data);
         }
-        return $this->render('home.html.twig');
+        return $this->redirectToRoute("home");
     }
     public function validatedAction()
     {
@@ -77,7 +77,7 @@ class MainController extends BaseController
         if (!empty($_GET['username']) === true && !empty($_GET['key']) === true) {
             $userManager = new MailManager();
             $userManager->validEmail($_GET['username'], ($_GET['key']));
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('home');
         } else {
             return $this->redirectToRoute('home');
         }

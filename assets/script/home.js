@@ -19,8 +19,13 @@ function getRequest(url, action = "") {
 function printpop(data) {
     login.onclick = function () {
         popup.innerHTML = dataArray[0];
-        popup.classList.remove("none");
         var closePopup = document.querySelector(".close-popup");
+        var passwordForgoten = document.querySelector(".passwordForgoten");
+        passwordForgoten.onclick = function () {
+            popup.innerHTML = dataArray[2];
+            var form = document.forms['form'];
+            form.addEventListener("submit", changePassword);
+        }
         closePopup.onclick = function () {
             closePop();
         };
@@ -39,7 +44,12 @@ function printpop(data) {
         };
     }
 }
-
+function printlogin() {
+    popup.innerHTML = dataArray[0];
+    popup.classList.remove("none");
+    var passwordForgoten = document.querySelector(".passwordForgoten");
+    return passwordForgoten;
+}
 function closePop() {
     popup.classList.add("none");
 }
@@ -58,12 +68,35 @@ function emailverif() {
 function json(response) {
     return response.json()
 }
-
+function changePassword() {
+    return false;
+    var email = document.querySelector(".email")
+    var url = '?action=changePassword';
+    fetch(url, {
+        method: 'post',
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: 'email=' + email,
+        credentials: 'include'
+    })
+        .then(json)
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
+}
 function createAccount() {
     var email = document.querySelector(".emailinput").value;
     var nickname = document.querySelector(".nicknameinput").value;
     var password = document.querySelector(".passwordinput").value;
     var errorMessage = '';
+    var blockErrors = document.querySelector(".blockErrors");
+    if (6 > email.length) {
+        errorMessage += 'Email non valide <br>';
+    }
     if (4 > nickname.length) {
         errorMessage += 'Saisir 4 caractères minimum pour le pseudo <br>';
     }
@@ -96,3 +129,4 @@ function createAccount() {
 
 getRequest('./popup/login.html');
 getRequest('./popup/register.html', popup);
+getRequest('./popup/passwordForgoten.html');

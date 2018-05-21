@@ -33,7 +33,6 @@ class ModeratorController extends BaseController
         if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
         } else if (!empty($_POST['btn']) && intval($_POST['btn'])) {
-            die;
         }
         $data = [
             'username' => $_SESSION['username'],
