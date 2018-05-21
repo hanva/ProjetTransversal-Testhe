@@ -36,9 +36,14 @@ for (var i = 0; i < savebtn.length; i++) {
         var data = {};
         var id = this.id;
         var j = 0;
-        var content = document.getElementById(id).children;
+        var content = document.querySelectorAll('#' + id);
         for (i = 0; i < content.length; i++) {
-            var value = content[i].innerHTML;
+            if (content[i].value !== undefined) {
+                var value = content[i].value;
+            }
+            else {
+                var value = content[i].innerHTML;
+            }
             if (value !== null) {
                 if (value.length === 0)
                     value.length === null;

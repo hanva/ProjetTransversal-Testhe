@@ -6,6 +6,7 @@ routes:
     disconnect:  'Main:disconnect'
     validEmail: 'Main:validEmail'
     validated: 'Main:validated'
+    changePassword: 'Main:changePassword'
     addArticle: 'Moderator:addArticle'
     modifyArticle: 'Moderator:modifyArticle'
     bo: 'Admin:bo'

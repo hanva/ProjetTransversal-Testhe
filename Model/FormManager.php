@@ -30,7 +30,7 @@ class FormManager
             $pdo = $dbm->getPdo();
             $encryptedpassword = sha1($password);
             $cle = null;
-            $valid = "no";
+            $valid = 0;
             $creation = date('Y-m-d H:i:s');
             $result = $pdo->prepare("INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, '', '', :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)");
             $result->bindParam(':email', $email);

@@ -54,7 +54,7 @@ class UserManager
         $valid = $valid->fetch(PDO::FETCH_COLUMN, 0);
         $mdp = $result->fetch(PDO::FETCH_COLUMN, 0);
         if ($mdp === sha1($password)) {
-            if ($valid !== "yes") {
+            if ($valid !== 1) {
                 return "Vous devez d'abord valider votre email pour vous connecter";
             }
             $_SESSION['username'] = $username;

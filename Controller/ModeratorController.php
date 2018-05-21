@@ -2,11 +2,10 @@
 namespace Controller;
 
 use Cool\BaseController;
+use Model\ArticleManager;
 use Model\FilesManager;
 use Model\FormManager;
 use Model\UserManager;
-
-use Model\ArticleManager;
 
 class ModeratorController extends BaseController
 {
@@ -35,15 +34,14 @@ class ModeratorController extends BaseController
         if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
         } else if (!empty($_POST['btn']) && intval($_POST['btn'])) {
-           $articleMangager = new ArticleManager();
-          $result= $articleMangager->getArticleById($_POST['btn']);
+            $articleMangager = new ArticleManager();
+            $result = $articleMangager->getArticleById($_POST['btn']);
 
         }
         $data = [
             'username' => $_SESSION['username'],
             'posts' => $result,
         ];
-
 
         return $this->render('modifyArticle.html.twig', $data);
     }

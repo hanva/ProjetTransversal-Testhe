@@ -60,7 +60,7 @@ class MailManager
         $result = $pdo->query("SELECT cle FROM users WHERE username = '$username'");
         $result = $result->fetch(PDO::FETCH_COLUMN, 0);
         if ($key === $result) {
-            $valid = "yes";
+            $valid = 1;
             $stmt = $pdo->prepare("UPDATE users SET valid=:valid WHERE username = :username");
             $stmt->bindParam(':valid', $valid);
             $stmt->bindParam(':username', $username);
