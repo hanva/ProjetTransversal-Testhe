@@ -82,4 +82,16 @@ class MainController extends BaseController
             return $this->redirectToRoute('home');
         }
     }
+    public function actualitheAction()
+    {
+        $data = [
+        
+        ];
+        
+        if (empty($_SESSION['username']) === false) {
+            $data['username'] = $_SESSION['username'];
+        }
+        return $this->render('actualithe.html.twig', $data);
+
+    }
 }

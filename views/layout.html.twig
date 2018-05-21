@@ -5,8 +5,12 @@
         <title>
             {% block page_title %}{% endblock %}
         </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/styles/style.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         {% block style %}{% endblock %}
     </head>
     <body>
@@ -17,7 +21,7 @@
                 <a href="?action=disconnect">disconnect</a>
             {% endif %}
             {% block nav %}
-                <div class="logo">testhé</div>
+                <img class="logo" src="./assets/styles/logoTesthe.png" alt="">
                 <div class="menu">
                     <span class="menu-items">actualithés
                         <img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
@@ -38,6 +42,7 @@
                     {% endif %}
                 </div>
             </div>
+
         {% endblock %}
     </header>
     <div class="blockErrors">
@@ -50,6 +55,42 @@
     </div>
     <div class="popup"></div>
     {% block content %}{% endblock %}
+    <footer class="footer-item">
+        <div class="footer-content">
+            <div class="footer-infos">
+                <h4>Information</h4><br><br>
+                <ul class="list">
+                    <li>A propos</li>
+                    <li>Contact</li>
+                    <li>Nos partenaires</li>
+                    <li>La presse</li>
+                </ul>
+            </div>
+            <div class="footer-navigation">
+                <h4>Navigation</h4><br><br>
+                <ul class="list">
+                    <li>Actualithés</li>
+                    <li>Dégusthé</li>
+                    <li>Histoire</li>
+                    <li>Mon compte</li>
+                </ul>
+            </div>
+            <div class="footer-community">
+                <h4>Communauthé</h4><br><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas
+                </p><br><br>
+                <img src="https://i.pinimg.com/originals/61/87/63/618763f9b5319f0518b6c45b1f60b601.png">
+                <img src="https://www.bostoncarkeys.com/wp-content/uploads/2017/01/facebook-icon.png">
+                <img src="http://www.authormedia.com/wp-content/uploads/2013/04/pinterest_badge_red.png">
+
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4><br><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia
+                </p>
+            </div>
+        </div>
+    </footer>
     <script src="./assets/script/script.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     {% block script %}{% endblock %}

@@ -64,5 +64,6 @@ class FormManager
         $result->bindParam(':content', $content);
         $result->bindParam(':creation', $creation);
         $result->execute();
+     
     }
 }
