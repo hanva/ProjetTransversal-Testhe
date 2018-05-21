@@ -11,3 +11,4 @@ routes:
     bo: 'Admin:bo'
     modifyDataBase: 'Admin:modifyDataBase'
     deleteUser: 'Admin:deleteUser'
+    actualithe: 'Main:actualithe'

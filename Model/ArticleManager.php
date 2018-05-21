@@ -29,4 +29,12 @@ class ArticleManager
         }
         return $data;
     }
+    public function getArticleById($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM articles WHERE id = $id");   
+        $posts = $result->fetch(PDO::FETCH_ASSOC); 
+        return $posts;
+    }
 }
