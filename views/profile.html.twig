@@ -1,0 +1,53 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <h1 class="center">Mon compte</h1>
+    <div class="  flex column">
+        <h2>Mes informations personnelles</h2>
+        <form>
+            <div class="flex row">
+                <div>
+                    <p>Nom</p>
+                    {% if user.lastname is empty %}
+                        <p class="movable name">Dupont</p>
+                    {% else %}
+                        <p class="movable name">{{user.lastname}}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <p>Prénom</p>
+                    {% if user.firstname is empty %}
+                        <p class="movable firstname">Jean</p>
+                    {% else %}
+                        <p class="movable firstname">{{user.firstname}}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="flex row">
+                <div>
+                    <p>Pseudo</p>
+                    <p class="movable firstname">{{user.username}}</p>
+                </div>
+                <div>
+                    <p>Email</p>
+                    <p name="email" class="movable email">{{user.email}}</p>
+                </div>
+            </div>
+            <div class="">
+                <p>Date de naissance</p>
+                {% if user.birthday is empty %}
+                    <p class="movable birthday">6 novembre 1999</p>
+                {% else %}
+                    <p class="movable birthday">{{user.birthday}}</p>
+                {% endif %}
+            </div>
+            <div class="">
+                <p>A propos</p>
+                {% if user.description is empty %}
+                    <p class="movable description">My description</p>
+                {% else %}
+                    <p class="movable description">{{user.description}}</p>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock %}

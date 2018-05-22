@@ -2,6 +2,8 @@
 namespace Controller;
 
 use Cool\BaseController;
+use Model\ArticleManager;
+use Model\UserManager;
 
 class UserController extends BaseController
 {
@@ -15,5 +17,19 @@ class UserController extends BaseController
         }
         $ArticleManager = new ArticleManager();
         $result = $articleMangager->writeComment($_POST['content'], $_POST['article_id'], $_SESSION['username']);
+    }
+    public function profileAction()
+    {
+        if (empty($_SESSION['username'])) {
+            return $this->redirectToRoute('home');
+        } else {
+            $userManager = new UserManager();
+            $user = $userManager->getUserInfos($_SESSION['username']);
+            $data = [
+                'user' => $user,
+            ];
+            return $this->render('profile.html.twig', $data);
+        }
+
     }
 }

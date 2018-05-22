@@ -32,7 +32,7 @@ class FormManager
             $cle = null;
             $valid = 0;
             $creation = date('Y-m-d H:i:s');
-            $result = $pdo->prepare("INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, '', '', :email, :password, :username, :creation, :cle,:valid, :moderator,:superadmin)");
+            $result = $pdo->prepare("INSERT INTO `users` (`id`, `firstname`, `lastname`, `birthday`, `email`, `description`, `password`, `username`,`creation`,`cle`,`valid`,`moderator`,`superadmin`) VALUES (NULL, '', '','', :email,'', :password, :username, :creation, :cle,:valid, :moderator,:superadmin)");
             $result->bindParam(':email', $email);
             $result->bindParam(':password', $encryptedpassword);
             $result->bindParam(':username', $username);

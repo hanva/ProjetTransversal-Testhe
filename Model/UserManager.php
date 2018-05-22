@@ -15,6 +15,16 @@ class UserManager
         $result = $result->fetch(PDO::FETCH_COLUMN, 0);
         return $result;
     }
+    public function getUserInfos($username)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * from users WHERE username = '$username'");
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
+
+        return $result;
+    }
     public function disconnect()
     {
         session_destroy();
