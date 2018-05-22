@@ -44,10 +44,8 @@ class MainController extends BaseController
     public function passwordForgotenAction()
     {
         if (!empty($_POST["Email"])) {
-            var_dump($_POST["Email"]);
             $mailManager = new MailManager();
             $result = $mailManager->sendPasswordMail($_POST['Email']);
-            var_dump($result);
             $data = [
                 'email' => $_POST['Email'],
             ];
@@ -59,7 +57,6 @@ class MainController extends BaseController
         if (!empty($_POST['password'])) {
             $userManager = new UserManager();
             $userManager->changePassword($_POST['password'], $_POST['email']);
-            die;
             return $this->redirectToRoute('home');
 
         } else {

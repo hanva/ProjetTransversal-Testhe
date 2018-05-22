@@ -21,18 +21,15 @@ section{
     margin-top:2vh;
     font-size:2em;
 }
-.center{
-    text-align: center;
-}
 .img21-container{
     z-index: 1;
     right: 0;
     margin-right:10vw;
-    width: 60%;
     position: absolute;
 }
 .img21{
-    width: 100%;
+    width: 50vw;
+    height:20vh;
 }
 .img21-container-left{
     z-index: 1;
@@ -43,8 +40,8 @@ section{
     background-color:#FBF2F3;
     position: absolute;
     margin-top:7vh;
-    width: 60%;
-    height:22.5vh;
+    width: 50vw;
+    height:20vh;
 }
 .style-container-right{
     background-color:#FBF2F3;

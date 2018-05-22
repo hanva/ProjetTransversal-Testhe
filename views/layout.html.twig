@@ -91,6 +91,9 @@
             </div>
         </div>
     </footer>
+    {% if username is not defined %}
+        <script src="assets/script/home.js"></script>
+    {% endif %}
     <script src="./assets/script/script.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     {% block script %}{% endblock %}

@@ -48,9 +48,10 @@ class UserManager
     public function changePassword($password, $email)
     {
         $dbm = DBManager::getInstance();
+        $cp = sha1($password);
         $pdo = $dbm->getPdo();
         $stmt = $pdo->prepare("UPDATE users SET password=:password WHERE email = :email");
-        $stmt->bindParam(':password', sha1($password));
+        $stmt->bindParam(':password', $cp);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
     }
@@ -63,7 +64,9 @@ class UserManager
         $valid = $valid->fetch(PDO::FETCH_COLUMN, 0);
         $mdp = $result->fetch(PDO::FETCH_COLUMN, 0);
         if ($mdp === sha1($password)) {
-            if ($valid !== 1) {
+            if ($valid !== "1") {
+                var_dump($valid);
+                die;
                 return "Vous devez d'abord valider votre email pour vous connecter";
             }
             $_SESSION['username'] = $username;

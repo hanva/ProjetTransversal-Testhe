@@ -11,9 +11,34 @@ class ArticleManager
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT * FROM articles  ORDER BY id DESC");
+        $result = $pdo->query("SELECT * FROM articles where is_recette=0   ORDER BY id DESC");
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
+    }
+    public function seeAllRecettes()
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM articles where is_recette=1  ORDER BY id DESC ");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
+    public function modifyArticle($articleId, $title, $file, $tag, $content)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("UPDATE articles SET title=:title,tag=:tag,content=:content WHERE id =:id");
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tag', $tag);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':id', $articleId);
+        $stmt->execute();
+        if ($file !== "") {
+            $stmt = $pdo->prepare("UPDATE articles SET pic=:pic WHERE id=:id");
+            $stmt->bindParam(':pic', $file);
+            $stmt->bindParam(':id', $articleId);
+            $stmt->execute();
+        }
     }
     public function seeArticleKeys()
     {
@@ -33,8 +58,8 @@ class ArticleManager
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT * FROM articles WHERE id = $id");   
-        $posts = $result->fetch(PDO::FETCH_ASSOC); 
+        $result = $pdo->query("SELECT * FROM articles WHERE id = $id");
+        $posts = $result->fetch(PDO::FETCH_ASSOC);
         return $posts;
     }
 }
