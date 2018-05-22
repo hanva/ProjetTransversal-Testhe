@@ -6,6 +6,7 @@ routes:
     disconnect:  'Main:disconnect'
     validEmail: 'Main:validEmail'
     validated: 'Main:validated'
+    passwordForgoten: 'Main:passwordForgoten'
     changePassword: 'Main:changePassword'
     addArticle: 'Moderator:addArticle'
     modifyArticle: 'Moderator:modifyArticle'
@@ -13,3 +14,4 @@ routes:
     modifyDataBase: 'Admin:modifyDataBase'
     deleteUser: 'Admin:deleteUser'
     actualithe: 'Main:actualithe'
+    history: 'Main:history'

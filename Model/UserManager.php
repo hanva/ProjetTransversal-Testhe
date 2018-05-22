@@ -45,6 +45,15 @@ class UserManager
         }
         return true;
     }
+    public function changePassword($password, $email)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("UPDATE users SET password=:password WHERE email = :email");
+        $stmt->bindParam(':password', sha1($password));
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+    }
     public function checkPassword($username, $password)
     {
         $dbm = DBManager::getInstance();
