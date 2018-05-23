@@ -1,10 +1,39 @@
 var info = document.querySelectorAll(".info");
 var savebtn = document.querySelectorAll(".Save");
 var deletebtn = document.querySelectorAll(".deleteUser");
+var saveArticle = document.querySelectorAll(".saveArticle");
+var deleteArticle = document.querySelectorAll(".deleteArticle");
+
 
 function json(response) {
     return response.json()
 }
+for (var i = 0; i < deleteArticle.length; i++) {
+    deleteArticle[i].onclick = function () {
+        var articleId = this.id;
+        /([0-9]+)/.exec(articleId);
+        var id = (RegExp.$1);
+        var url = '?action=deleteArticle&id=' + id;
+        fetch(url, {
+            method: 'get',
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            credentials: 'include'
+        })
+            .then(json)
+            .then(function (data) {
+                var el = document.getElementById(articleId);
+                var parent = el.parentNode;
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+    };
+};
 for (var i = 0; i < deletebtn.length; i++) {
     deletebtn[i].onclick = function () {
         var userId = this.id;
@@ -21,9 +50,10 @@ for (var i = 0; i < deletebtn.length; i++) {
             .then(json)
             .then(function (data) {
                 var el = document.getElementById(userId);
-                console.log(el);
                 var parent = el.parentNode;
-                parent.removeChild(el);
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
             })
             .catch(function (error) {
                 console.log('Request failed', error);

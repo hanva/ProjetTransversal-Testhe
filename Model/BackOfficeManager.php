@@ -47,4 +47,11 @@ class BackOfficeManager
         $stmt = $pdo->prepare("DELETE from users WHERE id = $id");
         $stmt->execute();
     }
+    public function deleteArticle($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("DELETE from articles WHERE id = $id");
+        $stmt->execute();
+    }
 }

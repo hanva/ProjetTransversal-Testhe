@@ -3,7 +3,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 {% endblock %}
 {% block content %}
+    <h1>BACK-OFFICE</h1>
     <div class=" container-fluid flex column">
+        <h2>UTILISATEURS</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -13,9 +15,13 @@
                 </tr>
             </thead>
             {% for users in infos %}
+                {% set compt = 0 %}
                 <tr class=' container-fluid  user{{users.id}}'>
                     {% for info in users %}
-                        {% if info == "0" or info == "1" %}
+                        {% if compt == 0 %}
+                            <th id="user{{users.id}}" class='info' value="{{info}}">{{info}}</th>
+                            {% set compt = compt + 1 %}
+                        {% elseif info == "0" or info == "1" %}
                             <th>
                                 <select class="test" id="user{{users.id}}">
                                     {% if info == "0"%}
@@ -41,10 +47,40 @@
             {% endfor %}
         </table>
     </div>
-{% endblock %}
-{% block script %}
-    <script>
-        var userkeys = {{ userkeys|json_encode|raw }};
-    </script>
-    <script src="assets/script/bo.js"></script>
-{% endblock %}
+    <div class=" container-fluid flex column">
+        <table class="table table-hover">
+            <h2>ARTICLES/RECETTES</h2>
+            <thead>
+                <tr>
+                    {% for key in articlekeys %}
+                        <th class=' table-bordered {{key}}'>{{key}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            {% for article in articles %}
+                <tr class=' container-fluid  article{{articles.id}}'>
+                    {% set compt = 0 %}
+                    {% for info in article %}
+                        {% if compt == 0 %}
+                            <th id="article{{article.id}}" class='info' value="{{info}}">{{info}}</th>
+                            {% set compt = compt + 1 %}
+                        {% else %}
+                            <th id="article{{article.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                        {% endif %}
+                    {% endfor %}
+                    <th>
+                        <button id="article{{article.id}}" class=" btn btn-success saveArticle">Save Changes</button>
+                    </th>
+                    <th>
+                        <button id="article{{article.id}}" class=" btn btn-danger deleteArticle">Delete Article</button>
+                    </th>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+    {% block script %}
+        <script>
+            var userkeys = {{ userkeys|json_encode|raw }};
+        </script>
+        <script src="assets/script/bo.js"></script>
+    {% endblock %}
