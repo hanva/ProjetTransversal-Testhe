@@ -19,10 +19,8 @@ class UserManager
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT * from users WHERE username = '$username'");
+        $result = $pdo->query("SELECT firstname,lastname,birthday,email,description,username from users WHERE username = '$username'");
         $result = $result->fetch(PDO::FETCH_ASSOC);
-        var_dump($result);
-
         return $result;
     }
     public function disconnect()
@@ -84,5 +82,22 @@ class UserManager
         } else {
             return 'Utilisateur ou mot de passe incorect';
         }
+    }
+    public function editProfile($lastname, $username, $firstname, $email, $birthday, $description)
+    {
+        var_dump($lastname);
+        $userId = self::getUserId($_SESSION['username']);
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("UPDATE users SET lastname=:lastname, username=:username, firstname=:firstname, email=:email, birthday=:birthday,description=:description WHERE id = :id");
+        $stmt->bindParam(':id', $userId);
+        $stmt->bindParam(':lastname', $lastname);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':firstname', $firstname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':birthday', $birthday);
+        $stmt->bindParam(':description', $description);
+        $stmt->execute();
+        $_SESSION['username'] = $username;
     }
 }

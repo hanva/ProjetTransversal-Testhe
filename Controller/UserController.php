@@ -32,4 +32,17 @@ class UserController extends BaseController
         }
 
     }
+    public function editProfileAction()
+    {
+
+        $lastname = $_POST["lastname"];
+        $username = $_POST["username"];
+        $firstname = $_POST["firstname"];
+        $email = $_POST["email"];
+        $birthday = $_POST["birthday"];
+        $description = $_POST["description"];
+        $userManager = new UserManager();
+        $userManager->EditProfile($lastname, $username, $firstname, $email, $birthday, $description);
+        return $this->redirectToRoute('profile');
+    }
 }

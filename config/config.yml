@@ -13,6 +13,7 @@ routes:
     actualithe: 'Main:actualithe'
     history: 'Main:history'
     profile: 'User:profile'
+    editProfile: 'User:editProfile'
     addArticle: 'Moderator:addArticle'
     modifyArticle: 'Moderator:modifyArticle'
     bo: 'Admin:bo'
