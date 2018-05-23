@@ -56,7 +56,7 @@ class MainController extends BaseController
     {
         if (!empty($_POST['password'])) {
             $userManager = new UserManager();
-            $userManager->changePassword($_POST['password'], $_POST['email']);
+            $userManager->changePasswordByEmail($_POST['password'], $_POST['email']);
             return $this->redirectToRoute('home');
 
         } else {

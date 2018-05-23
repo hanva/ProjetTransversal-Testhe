@@ -14,6 +14,7 @@ routes:
     history: 'Main:history'
     profile: 'User:profile'
     editProfile: 'User:editProfile'
+    modifyPassword: 'User:modifyPassword'
     addArticle: 'Moderator:addArticle'
     modifyArticle: 'Moderator:modifyArticle'
     bo: 'Admin:bo'

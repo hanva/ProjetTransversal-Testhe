@@ -53,7 +53,7 @@ class UserManager
         }
         return true;
     }
-    public function changePassword($password, $email)
+    public function changePasswordByEmail($password, $email)
     {
         $dbm = DBManager::getInstance();
         $cp = sha1($password);
@@ -62,6 +62,19 @@ class UserManager
         $stmt->bindParam(':password', $cp);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
+    }
+    public function changePasswordByUsername($password)
+    {
+        var_dump($password);
+        $username = $_SESSION['username'];
+        $dbm = DBManager::getInstance();
+        $cp = sha1($password);
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("UPDATE users SET password=:password WHERE username = :username");
+        $stmt->bindParam(':password', $cp);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        die;
     }
     public function checkPassword($username, $password)
     {
@@ -73,8 +86,6 @@ class UserManager
         $mdp = $result->fetch(PDO::FETCH_COLUMN, 0);
         if ($mdp === sha1($password)) {
             if ($valid !== "1") {
-                var_dump($valid);
-                die;
                 return "Vous devez d'abord valider votre email pour vous connecter";
             }
             $_SESSION['username'] = $username;
@@ -85,7 +96,6 @@ class UserManager
     }
     public function editProfile($lastname, $username, $firstname, $email, $birthday, $description)
     {
-        var_dump($lastname);
         $userId = self::getUserId($_SESSION['username']);
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();

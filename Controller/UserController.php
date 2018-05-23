@@ -30,11 +30,32 @@ class UserController extends BaseController
             ];
             return $this->render('profile.html.twig', $data);
         }
-
+    }
+    public function modifyPasswordAction()
+    {
+        if (empty($_SESSION['username'])) {
+            return $this->redirectToRoute('home');
+        }
+        if (!empty($_POST['password'])) {
+            $userManager = new UserManager();
+            $result = $userManager->checkPassword($_SESSION['username'], $_POST['password']);
+            if ($result === true) {
+                if ($_POST['newPassword'] === $_POST['passwordRepeat']) {
+                    $userManager->changePasswordByUsername($_POST['newPassword']);
+                    return $this->redirectToRoute('profil');
+                } else {
+                    $result = 'mot de passe non identiques';
+                }
+                $data = [
+                    'error' => $result,
+                ];
+                return $this->render('modifyPassword.html.twig', $data);
+            }
+        }
+        return $this->render('modifyPassword.html.twig');
     }
     public function editProfileAction()
     {
-
         $lastname = $_POST["lastname"];
         $username = $_POST["username"];
         $firstname = $_POST["firstname"];
