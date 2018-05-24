@@ -36,9 +36,39 @@ class MainController extends BaseController
             }
         }
     }
+    public function historyAction()
+    {
+        return $this->render('history.html.twig');
+
+    }
+    public function passwordForgotenAction()
+    {
+        if (!empty($_POST["Email"])) {
+            $mailManager = new MailManager();
+            $result = $mailManager->sendPasswordMail($_POST['Email']);
+            $data = [
+                'email' => $_POST['Email'],
+            ];
+            return $this->render("passwordForgoten.html.twig", $data);
+        }
+    }
     public function changePasswordAction()
     {
-        die;
+        if (!empty($_POST['password'])) {
+            $userManager = new UserManager();
+            $userManager->changePasswordByEmail($_POST['password'], $_POST['email']);
+            return $this->redirectToRoute('home');
+
+        } else {
+            if (empty($_GET['email'])) {
+                return $this->redirectToRoute('home');
+            } else {
+                $data = [
+                    'email' => $_GET['email'],
+                ];
+                return $this->render("changePassword.html.twig", $data);
+            }
+        }
     }
     public function loginAction()
     {
@@ -85,9 +115,9 @@ class MainController extends BaseController
     public function actualitheAction()
     {
         $data = [
-        
+
         ];
-        
+
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }

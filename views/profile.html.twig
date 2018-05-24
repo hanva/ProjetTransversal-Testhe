@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <h1 class="center">Mon compte</h1>
+    <div class="  flex column">
+        <h2>Mes informations personnelles</h2>
+        <form method="POST" action="?action=editProfile">
+            <div class="flex row">
+                <div>
+                    <p>Nom</p>
+                    {% if user.lastname is empty %}
+                        <p name="lastname" class="movable name">Dupont</p>
+                    {% else %}
+                        <p name="lastname" class="movable name">{{user.lastname}}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <p>Prénom</p>
+                    {% if user.firstname is empty %}
+                        <p name="firstname" class="movable firstname">Jean</p>
+                    {% else %}
+                        <p name="firstname" class="movable firstname">{{user.firstname}}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="flex row">
+                <div>
+                    <p>Pseudo</p>
+                    <p name="username" class="movable username">{{user.username}}</p>
+                </div>
+                <div>
+                    <p>Email</p>
+                    <p name="email" class="movable email">{{user.email}}</p>
+                </div>
+            </div>
+            <div class="">
+                <p>Date de naissance</p>
+                {% if user.birthday is empty %}
+                    <p name="birthday" class="movable birthday">6 novembre 1999</p>
+                {% else %}
+                    <p name="birthday" class="movable birthday">{{user.birthday}}</p>
+                {% endif %}
+            </div>
+            <div class="">
+                <p>A propos</p>
+                {% if user.description is empty %}
+                    <p name="description" class="movable description">My description</p>
+                {% else %}
+                    <p name="description" class="movable description">{{user.description}}</p>
+                {% endif %}
+            </div>
+            <a href="?action=modifyPassword">
+                Changer de mot de passe</a>
+            <button class="cancelbtn none">Anuller</button>
+            <button class="changebtn">Modifier</button>
+            <button class="savebtn none">Enregistrer</button>
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        var user = {
+            "lastname": "{{user.lastname}}",
+            "username": "{{user.username}}",
+            "firstname": "{{user.firstname}}",
+            "email": "{{user.email}}",
+            "birthday": "{{user.birthday}}",
+            "description": "{{user.description}}"
+        }
+        console.log(user);
+    </script>
+
+    <script src="./assets/script/profile.js"></script>
+{% endblock %}
