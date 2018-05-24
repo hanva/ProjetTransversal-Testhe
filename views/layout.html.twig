@@ -21,25 +21,30 @@
                 <a href="?action=disconnect">disconnect</a>
             {% endif %}
             {% block nav %}
-                <img class="logo" src="./assets/styles/logoTesthe.png" alt="">
+                <a href="?action=home"><img class="logo" src="./assets/styles/logoTesthe.png" alt=""></a>
                 <div class="menu">
-                    <span class="menu-items">actualithés
-                        <img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
-                    <span class="menu-items">degusthe
-                        <img class="little-arrow" src="assets/styles/chevron-bas.png"></i>
+                  <div class="dropdown">
+                    <span class="menu-items" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="?action=actualithe">Test</a>
+                        <a class="dropdown-item" href="#">Inteaview</a>
+                        <a class="dropdown-item" href="#">Tea battle</a>
+                      </div>
+                  </div>
+                    
+                    <span class="menu-items">degusthe<img class="little-arrow" src="assets/styles/chevron-bas.png"></i>
                 </span>
                 <span class="menu-items">histoire</span>
             </div>
             <div class="menu-right-items">
-                <div class="my-account">
-                    <i class="far fa-user"></i>
-                </div>
+                    
                 <div class="search-bar">
-                    <i class="fas fa-search"></i>
                     {% if username is null %}
-                        <button class="register">Register</button>
-                        <button class="login">Login</button>
+                        <i class="far fa-user register"></i>
+                        {# <button class="register">Register</button> #}
+                        {# <button class="login">Login</button> #}
                     {% endif %}
+                    <i class="fas fa-search"></i>
                 </div>
             </div>
 

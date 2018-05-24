@@ -1,5 +1,4 @@
 var dataArray = [];
-var login = document.querySelector(".login");
 var register = document.querySelector(".register");
 var popup = document.querySelector(".popup");
 
@@ -17,25 +16,17 @@ function getRequest(url, action = "") {
     request.send();
 }
 function printpop(data) {
-    login.onclick = function () {
-        popup.innerHTML = dataArray[0];
-        var closePopup = document.querySelector(".close-popup");
-        var passwordForgoten = document.querySelector(".passwordForgoten");
-        passwordForgoten.onclick = function () {
-            popup.innerHTML = dataArray[2];
-            var form = document.forms['form'];
-            form.addEventListener("submit", changePassword);
-        }
-        closePopup.onclick = function () {
-            closePop();
-        };
-    }
     register.onclick = function () {
         popup.innerHTML = dataArray[1];
         popup.classList.remove("none");
         emailverif();
         var closePopup = document.querySelector(".close-popup");
         var btn = document.querySelector(".registerbtn");
+        var login = document.querySelector(".login");
+        console.log(login);
+        login.onclick= function () {
+          printLogin();
+        };
         btn.onclick = function () {
             createAccount();
         };
@@ -44,11 +35,12 @@ function printpop(data) {
         };
     }
 }
-function printlogin() {
+function printLogin() {
     popup.innerHTML = dataArray[0];
     popup.classList.remove("none");
     var passwordForgoten = document.querySelector(".passwordForgoten");
     return passwordForgoten;
+    
 }
 function closePop() {
     popup.classList.add("none");
