@@ -26,14 +26,38 @@
                   <div class="dropdown">
                     <span class="menu-items" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="?action=actualithe">Test</a>
-                        <a class="dropdown-item" href="#">Inteaview</a>
-                        <a class="dropdown-item" href="#">Tea battle</a>
+                        <a class="dropdown-item dropdown-items" href="?action=actualithe"><h4>Test</h4></a>
+                        <a class="dropdown-item dropdown-items" href="?action=actualithe#inteaview"><h4>Inteaview</h4></a>
+                        <a class="dropdown-item dropdown-items" href="#"><h4>Tea battle</h4></a>
                       </div>
                   </div>
+                    <div class="dropdown">
+                      <span class="menu-items" class="btn btn-secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/styles/chevron-bas.png"></i></span>
+                      <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-items">
+                           <a class="dropdown-item" href="#"><h4>Pats</h4></a>  
+                           <hr>  
+                           <a class="dropdown-item" href="#">Plats cuisinés</a>
+                           <a class="dropdown-item" href="#">Légumes</a>
+                           <a class="dropdown-item" href="#">Tartes</a> 
+                        </div>
+                        <div class="dropdown-items">
+                           <a class="dropdown-item" href="#"><h4>Desserts</h4></a>   
+                           <hr> 
+                           <a class="dropdown-item" href="#">Gâteaux</a>
+                           <a class="dropdown-item" href="#">Biscuits</a>
+                           <a class="dropdown-item" href="#">Tartes</a> 
+                        </div>
+                        <div class="dropdown-items">
+                           <a class="dropdown-item" href="#"><h4>Instant thé</h4></a> 
+                           <hr>
+                           <a class="dropdown-item" href="#">Bubble tea</a>
+                           <a class="dropdown-item" href="#">Thé glacé</a>
+                           <a class="dropdown-item" href="#">Smoothie</a>    
+                        </div>
+                    </div>
+                  </div>     
                     
-                    <span class="menu-items">degusthe<img class="little-arrow" src="assets/styles/chevron-bas.png"></i>
-                </span>
                 <span class="menu-items">histoire</span>
             </div>
             <div class="menu-right-items">
@@ -41,8 +65,6 @@
                 <div class="search-bar">
                     {% if username is null %}
                         <i class="far fa-user register"></i>
-                        {# <button class="register">Register</button> #}
-                        {# <button class="login">Login</button> #}
                     {% endif %}
                     <i class="fas fa-search"></i>
                 </div>
