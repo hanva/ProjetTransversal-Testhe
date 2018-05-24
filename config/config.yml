@@ -17,5 +17,8 @@ routes:
     modifyArticle: 'Moderator:modifyArticle'
     bo: 'Admin:bo'
     modifyDataBase: 'Admin:modifyDataBase'
+    modifyAllArticles: 'Admin:modifyAllArticles'
+    modifyComments: 'Admin:modifyComments'
     deleteUser: 'Admin:deleteUser'
     deleteArticle: 'Admin:deleteArticle'
+    deleteComment: 'Admin:deleteComment'

@@ -23,6 +23,14 @@ class ArticleManager
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
+    public function seeCommentsByArticleId($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM comments where article_id=$id  ORDER BY id DESC ");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
     public function modifyArticle($articleId, $title, $file, $tag, $content)
     {
         $dbm = DBManager::getInstance();
@@ -46,6 +54,20 @@ class ArticleManager
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $result = $pdo->query("select column_name from information_schema.columns where table_name = 'articles' AND TABLE_SCHEMA='testhe'");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($posts as $value) {
+            foreach ($value as $key) {
+                array_push($data, $key);
+            }
+        }
+        return $data;
+    }
+    public function seeCommentsKeys()
+    {
+        $data = [];
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("select column_name from information_schema.columns where table_name = 'comments' AND TABLE_SCHEMA='testhe'");
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         foreach ($posts as $value) {
             foreach ($value as $key) {

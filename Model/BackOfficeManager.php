@@ -40,6 +40,29 @@ class BackOfficeManager
             $stmt->execute();
         }
     }
+    public function modifyAllArticles($id, $content)
+    {
+
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $array = (json_decode($content));
+        foreach ($array as $key => $value) {
+            $stmt = $pdo->prepare("UPDATE articles SET $key= '$value' WHERE id = $id");
+            $stmt->execute();
+        }
+    }
+    public function modifyComment($id, $content)
+    {
+
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $array = (json_decode($content));
+        var_dump($array);
+        foreach ($array as $key => $value) {
+            $stmt = $pdo->prepare("UPDATE comments SET $key= '$value' WHERE id = $id");
+            $stmt->execute();
+        }
+    }
     public function deleteUser($id)
     {
         $dbm = DBManager::getInstance();
@@ -52,6 +75,15 @@ class BackOfficeManager
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $stmt = $pdo->prepare("DELETE from articles WHERE id = $id");
+        $stmt->execute();
+        $stmt = $pdo->prepare("DELETE from comments WHERE article_id = $id");
+        $stmt->execute();
+    }
+    public function deleteComment($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $stmt = $pdo->prepare("DELETE from comments WHERE id = $id");
         $stmt->execute();
     }
 }

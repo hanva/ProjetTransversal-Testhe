@@ -11,16 +11,29 @@ class AdminController extends BaseController
     {
         $boManager = new BackOfficeManager();
         $articleManager = new ArticleManager();
-        $infos = $boManager->getUsersInfos();
-        $keyinfos = $boManager->getUsersKeys();
-        $articles = $articleManager->seeAllArticles();
-        $articlekeys = $articleManager->seeArticleKeys();
-        $data = [
-            'infos' => $infos,
-            'userkeys' => $keyinfos,
-            'articles' => $articles,
-            'articlekeys' => $articlekeys,
-        ];
+        if (!empty($_GET['article'])) {
+            $comments = $articleManager->seeCommentsByArticleId(($_GET['article']));
+            $commentskeys = $articleManager->seeCommentsKeys();
+            $data = [
+                'seeComments' => true,
+                'comments' => $comments,
+                'commentskeys' => $commentskeys,
+            ];
+            var_dump($data);
+            return $this->render('bo.html.twig', $data);
+        } else {
+            $infos = $boManager->getUsersInfos();
+            $keyinfos = $boManager->getUsersKeys();
+            $articles = $articleManager->seeAllArticles();
+            $articlekeys = $articleManager->seeArticleKeys();
+            $data = [
+                'seeComments' => false,
+                'infos' => $infos,
+                'userkeys' => $keyinfos,
+                'articles' => $articles,
+                'articlekeys' => $articlekeys,
+            ];
+        }
         return $this->render('bo.html.twig', $data);
     }
     public function modifyDataBaseAction()
@@ -29,6 +42,26 @@ class AdminController extends BaseController
             $id = $_GET['id'];
             $BackOfficeManager = new BackOfficeManager();
             $BackOfficeManager->modifyDataBase($id, $_POST['content']);
+        }
+        return json_encode(['status' => "ok"]);
+    }
+    public function modifyAllArticlesAction()
+    {
+        if (isset($_GET['id']) && $id = intval($_GET['id'])) {
+            $id = $_GET['id'];
+            $BackOfficeManager = new BackOfficeManager();
+            var_dump($_POST['content']);
+            $BackOfficeManager->modifyAllArticles($id, $_POST['content']);
+        }
+        return json_encode(['status' => "ok"]);
+    }
+    public function modifyCommentsAction()
+    {
+        if (isset($_GET['id']) && $id = intval($_GET['id'])) {
+            $id = $_GET['id'];
+            $BackOfficeManager = new BackOfficeManager();
+            var_dump($_POST['content']);
+            $BackOfficeManager->modifyComment($id, $_POST['content']);
         }
         return json_encode(['status' => "ok"]);
     }
@@ -47,6 +80,15 @@ class AdminController extends BaseController
             $id = $_GET['id'];
             $BackOfficeManager = new BackOfficeManager();
             $BackOfficeManager->deleteArticle($id);
+        }
+        return json_encode(['status' => "ok"]);
+    }
+    public function deleteCommentAction()
+    {
+        if (isset($_GET['id']) && $id = intval($_GET['id'])) {
+            $id = $_GET['id'];
+            $BackOfficeManager = new BackOfficeManager();
+            $BackOfficeManager->deleteComment($id);
         }
         return json_encode(['status' => "ok"]);
     }
