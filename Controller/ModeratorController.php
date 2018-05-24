@@ -21,7 +21,7 @@ class ModeratorController extends BaseController
             $userMangager = new UserManager();
             $user_id = $userMangager->getUserId($_SESSION['username']);
             $formMangager = new FormManager();
-            $formMangager->addArticle($user_id, $_POST['title'], $_POST['select'], $file, $_POST['content'], 0);
+            $formMangager->addArticle($user_id, $_POST['title'], $file, $_POST['content'], 0);
             return $this->redirectToRoute('home');
         }
         $data = [

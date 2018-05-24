@@ -4,22 +4,28 @@ namespace Controller;
 use Cool\BaseController;
 use Model\ArticleManager;
 use Model\BackOfficeManager;
+use Model\SecurityManager;
 
 class AdminController extends BaseController
 {
     public function boAction()
     {
+        $securityManager = new SecurityManager();
+        if (empty($_SESSION['username']) || $securityManager->getUserStatus($_SESSION['username']) !== "superadmin") {
+            return $this->redirectToRoute('home');
+        }
         $boManager = new BackOfficeManager();
         $articleManager = new ArticleManager();
         if (!empty($_GET['article'])) {
             $comments = $articleManager->seeCommentsByArticleId(($_GET['article']));
             $commentskeys = $articleManager->seeCommentsKeys();
+            $logs = $securityManager->getLogs();
             $data = [
+                'log' => $logs,
                 'seeComments' => true,
                 'comments' => $comments,
                 'commentskeys' => $commentskeys,
             ];
-            var_dump($data);
             return $this->render('bo.html.twig', $data);
         } else {
             $infos = $boManager->getUsersInfos();

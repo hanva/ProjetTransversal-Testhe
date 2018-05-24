@@ -51,15 +51,14 @@ class FormManager
             }
         }
     }
-    public function addArticle($userid, $title, $tag, $pic, $content, $recette)
+    public function addArticle($userid, $title, $pic, $content, $recette)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $creation = date('Y-m-d H:i:s');
-        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `user_id`, `title`, `tag`, `pic`, `content`,`creation`,`is_recette`) VALUES (NULL, :user_id, :title, :tag, :pic, :content, :creation ,:is_recette)');
+        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `user_id`, `title`, `pic`, `content`,`creation`,`is_recette`) VALUES (NULL, :user_id, :title, :pic, :content, :creation ,:is_recette)');
         $result->bindParam(':user_id', $userid);
         $result->bindParam(':title', $title);
-        $result->bindParam(':tag', $tag);
         $result->bindParam(':pic', $pic);
         $result->bindParam(':content', $content);
         $result->bindParam(':creation', $creation);
