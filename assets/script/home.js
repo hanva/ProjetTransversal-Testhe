@@ -1,6 +1,7 @@
 var dataArray = [];
 var register = document.querySelector(".register");
 var popup = document.querySelector(".popup");
+alert("ok")
 
 
 function getRequest(url, action = "") {
@@ -24,8 +25,8 @@ function printpop(data) {
         var btn = document.querySelector(".registerbtn");
         var login = document.querySelector(".login");
         console.log(login);
-        login.onclick= function () {
-          printLogin();
+        login.onclick = function () {
+            printLogin();
         };
         btn.onclick = function () {
             createAccount();
@@ -40,7 +41,7 @@ function printLogin() {
     popup.classList.remove("none");
     var passwordForgoten = document.querySelector(".passwordForgoten");
     return passwordForgoten;
-    
+
 }
 function closePop() {
     popup.classList.add("none");

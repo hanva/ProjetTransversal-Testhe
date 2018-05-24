@@ -21,10 +21,10 @@
                 <a href="?action=disconnect">disconnect</a>
             {% endif %}
             {% block nav %}
-                <a href="?action=home"><img class="logo" src="./assets/styles/logoTesthe.png" alt=""></a>
+                <a href="?action=home"><img class="logo" src="./assets/images/layout/logoTesthe.png" alt=""></a>
                 <div class="menu">
                     <div class="dropdown">
-                        <span class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
+                        <span class="menu-items" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></span>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item dropdown-items" href="?action=actualithe">
                                 <h4>Test</h4>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <span class="btn btn-secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/styles/chevron-bas.png"></i>
+                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
                     </span>
                     <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-items">
@@ -89,7 +89,7 @@
         {{ error }}
         {% for error in errors %}
             <article>
-                {{ error }}
+                {{error}}
             </article>
         {% endfor %}
     </div>
@@ -131,11 +131,11 @@
             </div>
         </div>
     </footer>
-    {% if username is not defined %}
-        <script src="assets/script/home.js"></script>
-    {% endif %}
     <script src="./assets/script/script.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    {% if username is not defined %}
+        <script src="/assets/script/home.js"></script>
+    {% endif %}
     {% block script %}{% endblock %}
 </body>
 </html>
