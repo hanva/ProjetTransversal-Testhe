@@ -1,4 +1,4 @@
-# Cool Framework by Sup'Internet DEV 2020
+# Testhé
 
 Installation
 ============
@@ -14,10 +14,5 @@ or
 
 You can get composer here : <https://getcomposer.org/download/>
 
-To keep in mind
-===============
 
-- Filer
-- Pokedex (with an API)
-- Intranet
 

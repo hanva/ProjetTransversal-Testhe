@@ -206,7 +206,7 @@ header {
     margin: 0 5%;
 }
 
-.news-text button {
+.news-text a {
     background-color: #C7E7DF; /* Green */
     border: none;
     color: white;
@@ -398,7 +398,7 @@ header {
     margin-left: 5%;
 }
 
-.first-article button {
+.first-article a {
     background-color: #BBD9D1;
     border: none;
     color: white;
@@ -434,7 +434,7 @@ header {
     margin-left: 5%;
 }
 
-.second-article button {
+.second-article a {
     background-color: #BBD9D1;
     border: none;
     color: white;
