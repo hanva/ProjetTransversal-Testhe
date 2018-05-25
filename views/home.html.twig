@@ -2,24 +2,6 @@
 
 {% block page_title %}Cool Framework{% endblock %}
 {% block content %}
-    {% for article in articles %}
-        {% set count = 0 %}
-        <article>
-            {% for value in article %}
-                {% if articlekeys[count] == "content" %}
-                    <div name="content" class="content">{{value|raw}}</div>
-                {% elseif articlekeys[count] == "pic" %}
-                    <img name="image" class='{{articlekeys[count]}}' width=" 50" height=" 50" src='./uploads/{{value}}'>
-                {% else %}
-                    <p name='{{articlekeys[count]}}' class='{{articlekeys[count]}}'>{{value}}</p>
-                {% endif %}
-                {% set count = count + 1 %}
-            {% endfor %}
-            <form action="?action=modifyArticle" method="POST">
-                <button class='btn' name='btn' value="{{article.id}}">Modify</button>
-            </form>
-        </article>
-    {% endfor %}
     <section class=" home-content">
         <div class="home-item first-item">
             <div class="first-item-content">
@@ -129,7 +111,6 @@
                         <h4>Nom de la recette</h4><br><br>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae laborum nisi qui fugiat, placeat eos, libero cum fugit sed hic. Sunt, ipsum commodi.
                         </p>
-
                         <h5>Ingrédients</h5>
                         <ul>
                             <li>Ingrédients1</li>

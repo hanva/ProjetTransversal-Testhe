@@ -7,6 +7,13 @@ cancelbtn.onclick = cancel;
 var savebtn = document.querySelector(".savebtn");
 
 var passbtn = document.querySelector(".passbtn")
+var deletebtn = document.querySelectorAll(".deletebtn");
+console.log(passbtn);
+for (var i = 0; i < deletebtn.length; i++) {
+    deletebtn[i].onclick = function () {
+        deleteArticle(this);
+    }
+}
 
 var defautuser = {
     "lastname": "Dupond",
@@ -61,4 +68,33 @@ function cancel() {
     passbtn.classList.remove("none");
     savebtn.classList += " none";
     return false;
+}
+function json(response) {
+    return response.json()
+}
+function deleteArticle(btn) {
+    var userId = btn.id;
+    /([0-9]+)/.exec(userId);
+    var id = (RegExp.$1);
+    var url = '?action=deleteArticle&id=' + id;
+    fetch(url, {
+        method: 'get',
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        credentials: 'include'
+    })
+        .then(json)
+        .then(function (data) {
+            if (data.status === "ok") {
+                var el = document.getElementById(userId);
+                var parent = el.parentNode;
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
 }

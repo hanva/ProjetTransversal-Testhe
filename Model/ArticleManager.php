@@ -47,13 +47,12 @@ class ArticleManager
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
-    public function modifyArticle($articleId, $title, $file, $tag, $content)
+    public function modifyArticle($articleId, $title, $file, $content)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $stmt = $pdo->prepare("UPDATE articles SET title=:title,tag=:tag,content=:content WHERE id =:id");
+        $stmt = $pdo->prepare("UPDATE articles SET title=:title,content=:content WHERE id =:id");
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':tag', $tag);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':id', $articleId);
         $stmt->execute();

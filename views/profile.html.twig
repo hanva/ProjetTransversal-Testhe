@@ -48,12 +48,24 @@
                     <p name="description" class="movable description">{{user.description}}</p>
                 {% endif %}
             </div>
-            <a href="?action=modifyPassword">
+            <a class="passbtn" href="?action=modifyPassword">
                 Changer de mot de passe</a>
             <button class="cancelbtn none">Anuller</button>
             <button class="changebtn">Modifier</button>
             <button class="savebtn none">Enregistrer</button>
         </form>
+    </div>
+    <div class="articles">
+        <h2>Vos articles/recettes !</h2>
+        {% for article in articles %}
+            <p>{{article.creation}}
+                :
+                {{article.title}}
+                <a href="?action=modifyArticle&article={{article.id}}">Modifier</a>
+                <button class="deletebtn " id="{{article.id}}">Supprimer votre article</button>
+            </p>
+
+        {% endfor %}
     </div>
 {% endblock %}
 {% block script %}
@@ -66,7 +78,6 @@
             "birthday": "{{user.birthday}}",
             "description": "{{user.description}}"
         }
-        console.log(user);
     </script>
 
     <script src="./assets/script/profile.js"></script>

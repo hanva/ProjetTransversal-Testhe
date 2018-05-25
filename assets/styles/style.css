@@ -868,3 +868,7 @@ header {
     margin-top: 20%;
     width: 50%;
 }
+.card img{
+    width: 100%;
+    height:50%;
+}
