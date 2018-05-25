@@ -12,16 +12,16 @@ class FormManager
         $userManager = new UserManager();
         $errors = [];
         if ($userManager->isUsernameValid($username) === false) {
-            array_push($errors, "username already taken");
+            $errors['username'] = "ce nom de compte est déjà utilisé";
         }
         if ($userManager->isEmailValid($email) === false) {
-            array_push($errors, "email already taken");
+            $errors['email'] = "Cet Email est déjà utilisé !";
         }
         if (strlen($username) < 4) {
-            array_push($errors, "4 letters needed for an username");
+            $errors['username'] = "le mot de compte est trop court ! (minimum 4)";
         }
         if (strlen($password) < 6) {
-            array_push($errors, "Password too short(min6)");
+            $errors['password'] = "le mot de passe est trop court ! (minimum 6)";
         }
         if ($errors !== []) {
             return $errors;

@@ -70,30 +70,112 @@
                         </div>
                     </div>
                 </div>
-
                 <span class="menu-items">histoire</span>
             </div>
             <div class="menu-right-items">
-
                 <div class="search-bar">
                     {% if username is null %}
-                        <i class="far fa-user register"></i>
+                        <i class="far fa-user printregisterbtn"></i>
+                    {% else %}
+                        <a href="?action=profile" class="far fa-user"></a>
                     {% endif %}
                     <i class="fas fa-search"></i>
                 </div>
             </div>
-
         {% endblock %}
     </header>
-    <div class="blockErrors">
-        {{ error }}
-        {% for error in errors %}
-            <article>
-                {{error}}
-            </article>
-        {% endfor %}
+    <div class="popup">
+        <div class="password-content none">
+            <div class="login-left-side">
+                <h1>testhé</h1><br>
+                <p>C'est votre première visite? Notre communauthé</p>
+                <img src="assets/images/layout/theiere.png">
+            </div>
+            <div class="login-right-side">
+                <div class="close-popup">
+                    <i id="cross" class="fas fa-times"></i>
+                </div>
+                <div class="form-content">
+                    <h1>Mot de passe oublié</h1>
+                    <p class="blockSucess"></p>
+                    <div class="login-infos login-password">
+                        <label name="email" for="text">Email</label>
+                        <input class="emailpassword" type="text" name="Email" placeholder="email">
+                    </div>
+                    <div name="div" class="login-bot">
+                        <button class="forgotpasswordbtn btn btn-primary">Envoyer</button>
+                        <a class="passwordNotForgoten">Mot de passe pas oublié</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="register-content none">
+            <div class="register-left-side">
+                <h1><img class="logo" src="./assets/images/layout/logoTestheBlanc.png" alt=""></h1><br>
+                <p>Vous avez déjà un compte ?</p>
+                <img class="img-theiere" src="./assets/images/layout/theiere2.png"><br>
+                <button class="btn-register-left-side loginbtn">Se connecter</button>
+            </div>
+            <div class="register-right-side">
+                <div class="close-popup">
+                    <i id="cross" class="fas fa-times"></i>
+                </div>
+                <div class="form-content">
+                    <h1>Crée un compte</h1>
+                    <div class="register-infos register-password">
+                        <label for="email">Adresse email</label>
+                        <input type="email" class="emailinput" name="email" placeholder="entrer votre adresse email">
+                        <p class="emailBlock"></p>
+                    </div>
+                    <div class="register-infos">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" class="nicknameinput" name="username" placeholder="entrer votre nom d'utilisateur">
+                        <p class="nickBlock"></p>
+                    </div>
+                    <div class="register-infos login-password">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="passwordinput" name="password" placeholder="entrer votre mot de passe">
+                        <p class="passBlock"></p>
+                    </div>
+                    <div class="register-bot">
+                        <button name="hehe" class="btn registerbtn btn-primary">S'inscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" none login-content ">
+            <div class="login-left-side">
+                <h1><img class="logo" src="./assets/images/layout/logoTestheBlanc.png" alt=""></h1><br>
+                <p>Vous ne faites pas parti de notre
+                    <br>
+                    communauthé ? Rejoignez-nous !</p>
+                <img class="img-theiere" src="assets/images/layout/theiere2.png"><br>
+                <button class="btn-login-left-side printregisterbtn">S'inscrire</button>
+            </div>
+            <div class=" login-right-side">
+                <div class="close-popup">
+                    <i id="cross" class="fas fa-times"></i>
+                </div>
+                <p class=".blockSucess"></p>
+                <div class="form-content">
+                    <h1>Se connecter</h1>
+                    <div class="login-infos">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" class="login-username" placeholder="entrer votre nom d'utilisateur">
+                        <p class="blockErrors"></p>
+                    </div>
+                    <div class="login-infos login-password">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="login-password-field" placeholder="entrer votre mot de passe">
+                    </div>
+                    <div class="login-bot">
+                        <button type="submit" class="login-btn btn btn-primary">Se connecter</button>
+                        <a class="passwordForgoten">Mot de passe oublié ?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="popup"></div>
     {% block content %}{% endblock %}
     <footer class="footer-item">
         <div class="footer-content">
@@ -134,7 +216,7 @@
     <script src="./assets/script/script.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     {% if username is not defined %}
-        <script src="/assets/script/home.js"></script>
+        <script src="./assets/script/home.js"></script>
     {% endif %}
     {% block script %}{% endblock %}
 </body>
