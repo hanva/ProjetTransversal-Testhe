@@ -11,13 +11,7 @@ class MainController extends BaseController
 {
     public function homeAction()
     {
-        $articleManager = new ArticleManager();
-        $articles = $articleManager->seeAllArticles();
-        $articlekeys = $articleManager->seeArticleKeys();
-        $data = [
-            'articles' => $articles,
-            'articlekeys' => $articlekeys,
-        ];
+        $data = [];
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }
@@ -30,6 +24,8 @@ class MainController extends BaseController
             $formManager = new FormManager();
             $response = $formManager->register($_POST['username'], $_POST['email'], $_POST['password']);
             if ($response === true) {
+                $securityManager = new SecurityManager();
+                $securityManager->writeInLogs($_POST['username'], "createAccountAction", "log", "account created .");
                 return json_encode(['status' => "ok"]);
             } else {
                 return json_encode($response);
@@ -39,7 +35,6 @@ class MainController extends BaseController
     public function historyAction()
     {
         return $this->render('history.html.twig');
-
     }
     public function passwordForgotenAction()
     {
@@ -66,6 +61,8 @@ class MainController extends BaseController
         if (!empty($_POST['password'])) {
             $userManager = new UserManager();
             $userManager->changePasswordByEmail($_POST['password'], $_POST['email']);
+            $securityManager = new SecurityManager();
+            $securityManager->writeInLogs($_POST['email'], "changePasswordAction", "log", "changed password .");
             return $this->redirectToRoute('home');
         } else {
             if (empty($_GET['email'])) {
@@ -121,10 +118,13 @@ class MainController extends BaseController
     }
     public function actualitheAction()
     {
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->seeAllArticles();
+        $articlekeys = $articleManager->seeArticleKeys();
         $data = [
-
+            'articles' => $articles,
+            'articlekeys' => $articlekeys,
         ];
-
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }

@@ -1,0 +1,31 @@
+{% block style %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+    <table class="table table-hover">
+        <h2>LOGS</h2>
+        <thead>
+            <tr>
+                {% for key in logskeys %}
+                    <th class=' table-bordered {{key}}'>{{key}}</th>
+                {% endfor %}
+                <th>
+                    <a class="btn btn-primary" href="?action=bo">Retour</a>
+                </th>
+            </tr>
+        </thead>
+        {% for article in logs %}
+            <tr class=' container-fluid  article{{articles.id}}'>
+                {% set compt = 0 %}
+                {% for info in article %}
+                    {% if compt == 0 %}
+                        <th id="article{{article.id}}" class='info' value="{{info}}">{{info}}</th>
+                        {% set compt = compt + 1 %}
+                    {% else %}
+                        <th id="article{{article.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -15,6 +15,15 @@ class BackOfficeManager
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
+
+    public function getLogs()
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM operations  ORDER BY id DESC");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
     public function getUsersKeys()
     {
         $data = [];
@@ -29,7 +38,21 @@ class BackOfficeManager
         }
         return $data;
     }
-    public function modifyDataBase($id, $content)
+    public function getLogsKeys()
+    {
+        $data = [];
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("select column_name from information_schema.columns where  table_name = 'operations' AND TABLE_SCHEMA='testhe'");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($posts as $value) {
+            foreach ($value as $key) {
+                array_push($data, $key);
+            }
+        }
+        return $data;
+    }
+    public function modifyUser($id, $content)
     {
 
         $dbm = DBManager::getInstance();
