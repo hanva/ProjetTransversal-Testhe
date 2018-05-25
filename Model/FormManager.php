@@ -51,7 +51,7 @@ class FormManager
             }
         }
     }
-    public function addArticle($userid, $title, $pic, $content, $recette)
+    public function addArticle($userid, $title, $pic, $content, $recette, $tag)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
@@ -63,6 +63,27 @@ class FormManager
         $result->bindParam(':content', $content);
         $result->bindParam(':creation', $creation);
         $result->bindParam(':is_recette', $recette);
+        $result->execute();
+        $articleId = $pdo->lastInsertId();
+        $articleId = intval($articleId);
+        self::addTagToArticle($tag, $articleId);
+
+    }
+    public function addTagToArticle($tag, $id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        if ($tag === "Plats cuisinés" or $tag === "Légumes" or $tag === "Tartes salées") {
+            $rubrique = "Plats";
+        } else if ($tag === "Biscuits" or $tag === "Gateaux" or $tag === "Tartes sucrées") {
+            $rubrique = "Dessert";
+        } else {
+            $rubrique = "Instant thé";
+        }
+        $result = $pdo->prepare('INSERT INTO `rubriques` (`id`, `article_id`, `rubrique`, `tag`) VALUES (NULL, :article_id, :rubrique, :tag)');
+        $result->bindParam(':article_id', $id);
+        $result->bindParam(':rubrique', $rubrique);
+        $result->bindParam(':tag', $tag);
         $result->execute();
     }
     public function writeComment($content, $articleId, $username)

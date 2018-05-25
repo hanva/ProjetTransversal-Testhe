@@ -5,6 +5,7 @@ use Cool\BaseController;
 use Model\ArticleManager;
 use Model\FormManager;
 use Model\MailManager;
+use Model\SecurityManager;
 use Model\UserManager;
 
 class MainController extends BaseController

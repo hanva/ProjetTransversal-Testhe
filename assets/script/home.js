@@ -20,7 +20,7 @@ function printRegister() {
     registerbtn.onclick = function () {
         createAccount();
     }
-    var closepop = document.getElementById("cross");
+    var closepop = document.getElementById("crossregister");
     closepop.onclick = function () {
         closePop(popregister);
     }
@@ -41,8 +41,7 @@ function printLogin() {
     loginbtn.onclick = function () {
         loginAction();
     }
-    var close = document.getElementById("cross");
-    console.log(close);
+    var close = document.getElementById("crosslogin");
     close.onclick = function () {
         closePop(loginpop);
     }
@@ -64,7 +63,7 @@ function printPassword() {
         printRegister();
     }
     var close = document.getElementById("cross");
-    console.log(close);
+
     close.onclick = function () {
         closePop(poppassword);
     }
