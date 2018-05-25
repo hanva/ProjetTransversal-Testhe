@@ -4,6 +4,9 @@
 {% block content %}
     <h1>BACK-OFFICE</h1>
     <div class=" container-fluid flex column">
+        {% if logs == false %}
+            <a href="?action=bo&log=true">Voir logs</a>
+        {% endif %}
         {% if seeComments == false %}
             <h2>UTILISATEURS</h2>
             <table class="table table-hover">

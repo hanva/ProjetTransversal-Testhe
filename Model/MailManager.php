@@ -45,7 +45,7 @@ class MailManager
         ---------------
         Ceci est un mail automatique, Merci de ne pas y répondre.';
             $mail->addAddress($email);
-            $mail->send();
+            $result = $mail->send();
             return true;
         } catch (Exception $e) {
             return false;

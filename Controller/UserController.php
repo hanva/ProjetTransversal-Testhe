@@ -24,14 +24,16 @@ class UserController extends BaseController
             return $this->redirectToRoute('home');
         } else {
             $userManager = new UserManager();
+            $articleMangager = new ArticleManager();
             $user = $userManager->getUserInfos($_SESSION['username']);
-            //  $articles = $userManager->getArticlesById($_SESSION['username']);
-            //$comments = $userManager->getCommentsById($_SESSION['username']);
+            $userId = $userManager->getUserId($_SESSION['username']);
+            $articles = $articleMangager->getArticlesById($userId);
+            $comments = $articleMangager->getCommentsById($userId);
             $data = [
                 'user' => $user,
                 'username' => $_SESSION['username'],
-                //'articles' => $articles,
-                //'comments' => $comments,
+                'articles' => $articles,
+                'comments' => $comments,
             ];
             return $this->render('profile.html.twig', $data);
         }

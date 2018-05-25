@@ -23,7 +23,7 @@ function printRegister() {
     registerbtn.onclick = function () {
         createAccount();
     }
-    var closepop = document.getElementById("cross");
+    var closepop = document.getElementById("crossregister");
     closepop.onclick = function () {
         closePop(popregister);
     }
@@ -44,8 +44,7 @@ function printLogin() {
     loginbtn.onclick = function () {
         loginAction();
     }
-    var close = document.getElementById("cross");
-    console.log(close);
+    var close = document.getElementById("crosslogin");
     close.onclick = function () {
         closePop(loginpop);
     }
@@ -67,7 +66,7 @@ function printPassword() {
         printRegister();
     }
     var close = document.getElementById("cross");
-    console.log(close);
+
     close.onclick = function () {
         closePop(poppassword);
     }
@@ -103,7 +102,7 @@ function json(response) {
 }
 function askNewPassword() {
     var email = document.querySelector(".emailpassword").value;
-    var blockSucess = document.querySelector(".blockSucess");
+    var blockSucess = document.querySelector(".blockSucessPass");
     var url = '?action=passwordForgoten';
     fetch(url, {
         method: 'post',
@@ -217,7 +216,11 @@ function createAccount() {
                 }
                 else {
                     switchClass(loginpop, popregister, poppassword);
-                    wait(300);
+                    return 200
+                }
+
+            }).then(function (data) {
+                if (data === 200) {
                     var blockSucess = document.querySelector(".blockSucess");
                     console.log(blockSucess);
                     blockSucess.innerHTML = "Bien joué ! Veuillez valider votre email pour vous connecter !"
