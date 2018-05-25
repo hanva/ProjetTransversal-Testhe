@@ -25,8 +25,13 @@ class UserController extends BaseController
         } else {
             $userManager = new UserManager();
             $user = $userManager->getUserInfos($_SESSION['username']);
+            //  $articles = $userManager->getArticlesById($_SESSION['username']);
+            //$comments = $userManager->getCommentsById($_SESSION['username']);
             $data = [
                 'user' => $user,
+                'username' => $_SESSION['username'],
+                //'articles' => $articles,
+                //'comments' => $comments,
             ];
             return $this->render('profile.html.twig', $data);
         }

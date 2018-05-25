@@ -9,6 +9,7 @@ routes:
     passwordForgoten: 'Main:passwordForgoten'
     changePassword: 'Main:changePassword'
     actualithe: 'Main:actualithe'
+    article: 'Main:article'
     history: 'Main:history'
     profile: 'User:profile'
     editProfile: 'User:editProfile'

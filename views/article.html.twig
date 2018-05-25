@@ -1,0 +1,80 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Cool Framework{% endblock %}
+{% block content %}
+
+
+    <section class="article-header">
+        <div class="article-header-content">
+            <img src="http://www.ecoleduthe.com/modules//blocktopslideredt/img/im-slider2.jpg" alt="">
+            <div class="article-header-label">
+                <h4>Lorem ipsum</h4><br>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+                  laborum nisi qui fugiat <br>, placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+                  laborum nisi qui fugiat, placeat eo
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="article-img">
+        <img src="http://www.saveursetemotionsdumonde.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/ambiance16_1.jpg" alt="">
+    </div>
+    <div class="article-content">
+        <h1>Lorem Ipmseuaergqr</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat, placeat eo
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat, placeat eo
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat, placeat eo
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+          laborum nisi qui fugiat, placeat eo
+        </p>
+    </div>
+        <div class="article-comment">
+            <div class="actualithe-title">
+              <h1>Commentaires</h1>
+            <div class="underline underline-actualithe"></div>
+        </div>
+        <div class="article-comments">
+            <h4>Pseudo</h4><br>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+              laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+              laborum nisi qui fugiat, placeat eo
+            </p>
+        </div>
+        <div class="article-comments">
+            <h4>Pseudo</h4><br>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+              laborum nisi qui fugiat , placeat eo t consectetur adipisicing elit. Illo cupiditate officia a voluptas molestiae
+              laborum nisi qui fugiat, placeat eo
+            </p>
+        </div>
+        {% if username is defined %}
+        <div class="comment-block">
+            <h2 class="h2-comment">Ajouter un commentaire</h2>
+            <textarea cols="30" rows="10" class="register-block-button"></textarea>
+            <button>Envoyer</button>
+        </div>
+        {% else %}
+        <div class="register-block-button">
+            <h2>Une envie de commenthé ?</h2>
+            <button class="printregisterbtn"><a href="#header">Inscrivez-vous</a></button>
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+{% block script %}
+    {% if username is not defined %}
+        <script src="assets/script/home.js"></script>
+    {% endif %}
+{% endblock %}

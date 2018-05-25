@@ -32,7 +32,7 @@ class MainController extends BaseController
             if ($response === true) {
                 return json_encode(['status' => "ok"]);
             } else {
-                return json_encode(['status' => $response]);
+                return json_encode($response);
             }
         }
     }
@@ -43,14 +43,23 @@ class MainController extends BaseController
     }
     public function passwordForgotenAction()
     {
-        if (!empty($_POST["Email"])) {
+        if (!empty($_POST["email"])) {
             $mailManager = new MailManager();
-            $result = $mailManager->sendPasswordMail($_POST['Email']);
-            $data = [
-                'email' => $_POST['Email'],
-            ];
-            return $this->render("passwordForgoten.html.twig", $data);
+            $userManager = new UserManager();
+            if ($userManager->isEmailValid($_POST['email']) === true) {
+                $data = [
+                    'email' => "Cet email n'existe pas sur notre site",
+                ];
+                return json_encode($data);
+            } else {
+                $result = $mailManager->sendPasswordMail($_POST['email']);
+                $data = [
+                    'email' => $result,
+                ];
+                return json_encode($data);
+            }
         }
+        return $this->redirectToRoute("home");
     }
     public function changePasswordAction()
     {
@@ -58,7 +67,6 @@ class MainController extends BaseController
             $userManager = new UserManager();
             $userManager->changePasswordByEmail($_POST['password'], $_POST['email']);
             return $this->redirectToRoute('home');
-
         } else {
             if (empty($_GET['email'])) {
                 return $this->redirectToRoute('home');
@@ -74,16 +82,15 @@ class MainController extends BaseController
     {
         $userManager = new UserManager();
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if ($response = $userManager->isUsernameValid($_POST['username']) === false) {
-                $response = $userManager->checkPassword($_POST['username'], $_POST['password']);
-                if ($response === true) {
-                    return $this->redirectToRoute("home");
-                } else {
-                    $data = [
-                        'error' => $response,
-                    ];
-                    return $this->redirectToRoute("home", $response);
-                }
+
+            $response = $userManager->checkPassword($_POST['username'], $_POST['password']);
+            if ($response === true) {
+                return json_encode(["status" => "200"]);
+            } else {
+                $data = [
+                    'error' => $response,
+                ];
+                return json_encode($data);
             }
         }
         return $this->redirectToRoute("home");
@@ -122,6 +129,19 @@ class MainController extends BaseController
             $data['username'] = $_SESSION['username'];
         }
         return $this->render('actualithe.html.twig', $data);
+
+    }
+
+    public function articleAction()
+    {
+        $data = [
+
+        ];
+
+        if (empty($_SESSION['username']) === false) {
+            $data['username'] = $_SESSION['username'];
+        }
+        return $this->render('article.html.twig', $data);
 
     }
 }

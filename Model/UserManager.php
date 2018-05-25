@@ -40,14 +40,14 @@ class UserManager
         }
         return true;
     }
-    public function isEmailValid($username)
+    public function isEmailValid($email)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $result = $pdo->query("SELECT email FROM users");
         $posts = $result->fetchAll(PDO::FETCH_COLUMN, 0);
         foreach ($posts as $value) {
-            if ($value === $username) {
+            if ($value === $email) {
                 return false;
             }
         }
@@ -65,7 +65,6 @@ class UserManager
     }
     public function changePasswordByUsername($password)
     {
-        var_dump($password);
         $username = $_SESSION['username'];
         $dbm = DBManager::getInstance();
         $cp = sha1($password);
@@ -74,7 +73,6 @@ class UserManager
         $stmt->bindParam(':password', $cp);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
-        die;
     }
     public function checkPassword($username, $password)
     {

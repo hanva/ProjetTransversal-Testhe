@@ -82,7 +82,7 @@ class MailManager
         Ceci est un mail automatique, Merci de ne pas y répondre.';
             $mail->addAddress($email);
             $mail->send();
-            return true;
+            return "Un email a été envoyé à " . $_POST['email'] . ". Verifiez aussi vos spams";
         } catch (Exception $e) {
             return false;
         }
