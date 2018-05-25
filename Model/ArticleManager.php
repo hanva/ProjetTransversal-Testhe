@@ -23,6 +23,22 @@ class ArticleManager
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
+    public function getCommentsById($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM comments where user_id=$id  ORDER BY id DESC ");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
+    public function getArticlesById($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM articles where user_id=$id  ORDER BY id DESC ");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
     public function seeCommentsByArticleId($id)
     {
         $dbm = DBManager::getInstance();

@@ -569,8 +569,7 @@ header {
 
 /* login & register css */
 
-.login-content, .register-content {
-    display: flex;
+.login-content, .register-content, .password-content {
     flex-direction: row;
     width: 58%;
     position: absolute;
