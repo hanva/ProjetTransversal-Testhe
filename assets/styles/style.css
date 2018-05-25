@@ -781,9 +781,7 @@ header {
 .fa-times:hover {
     font-size: 1vw;
 }
-
 /* css du sous menu deroulant actualithé */
-
 .dropdown-menu {
     margin-top: 28%;
     width: 100vw;

@@ -20,6 +20,7 @@ routes:
     modifyUser: 'Admin:modifyUser'
     modifyAllArticles: 'Admin:modifyAllArticles'
     modifyComments: 'Admin:modifyComments'
+    writeComment: 'User:writeComment'
+    deleteComment: 'Admin:deleteComment'
     deleteUser: 'Admin:deleteUser'
     deleteArticle: 'Admin:deleteArticle'
-    deleteComment: 'Admin:deleteComment'
