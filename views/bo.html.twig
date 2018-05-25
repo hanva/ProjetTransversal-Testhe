@@ -1,53 +1,127 @@
-{% block page_title %}Cool Framework{% endblock %}
 {% block style %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 {% endblock %}
 {% block content %}
+    <h1>BACK-OFFICE</h1>
     <div class=" container-fluid flex column">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    {% for key in userkeys %}
-                        <th class=' table-bordered {{key}}'>{{key}}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            {% for users in infos %}
-                <tr class=' container-fluid  user{{users.id}}'>
-                    {% for info in users %}
-                        {% if info == "0" or info == "1" %}
+        {% if seeComments == false %}
+            <h2>UTILISATEURS</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        {% for key in userkeys %}
+                            <th class=' table-bordered {{key}}'>{{key}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                {% for users in infos %}
+                    {% set compt = 0 %}
+                    <tr class=' container-fluid  user{{users.id}}'>
+                        {% for info in users %}
+                            {% if compt == 0 %}
+                                <th id="user{{users.id}}" class='info' value="{{info}}">{{info}}</th>
+                                {% set compt = compt + 1 %}
+                            {% elseif info == "0" or info == "1" %}
+                                <th>
+                                    <select class="test" id="user{{users.id}}">
+                                        {% if info == "0"%}
+                                            <option>{{info}}</option>
+                                            <option>1</option>
+                                        {% else %}
+                                            <option>{{info}}</option>
+                                            <option>0</option>
+                                        {% endif %}
+                                    </select>
+                                </th>
+                            {% else %}
+                                <th id="user{{users.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                            {% endif %}
+                        {% endfor %}
+                        <th>
+                            <button id="user{{users.id}}" class=" btn btn-success Save">Save</button>
+                        </th>
+                        <th>
+                            <button id="user{{users.id}}" class=" btn btn-danger deleteUser">Delete User</button>
+                        </th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class=" container-fluid flex column">
+            <table class="table table-hover">
+                <h2>ARTICLES/RECETTES</h2>
+                <thead>
+                    <tr>
+                        {% for key in articlekeys %}
+                            <th class=' table-bordered {{key}}'>{{key}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                {% for article in articles %}
+                    <tr class=' container-fluid  article{{articles.id}}'>
+                        {% set compt = 0 %}
+                        {% for info in article %}
+                            {% if compt == 0 %}
+                                <th id="article{{article.id}}" class='info' value="{{info}}">{{info}}</th>
+                                {% set compt = compt + 1 %}
+                            {% else %}
+                                <th id="article{{article.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                            {% endif %}
+                        {% endfor %}
+                        <th>
+                            <button id="article{{article.id}}" class=" btn btn-success saveArticle">Save Changes</button>
+                        </th>
+                        <th>
+                            <a class="btn btn-primary" href="?action=bo&article={{article.id}}">Voir commentaires</a>
+                        </th>
+                        <th>
+                            <button id="article{{article.id}}" class=" btn btn-danger deleteArticle">Delete Article</button>
+                        </th>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <table class="table table-hover">
+                    <h2>COMMENTAIRES</h2>
+                    <thead>
+                        <tr>
+                            {% for key in commentskeys %}
+                                <th class=' table-bordered {{key}}'>{{key}}</th>
+                            {% endfor %}
                             <th>
-                                <select class="test" id="user{{users.id}}">
-                                    {% if info == "0"%}
-                                        <option>{{info}}</option>
-                                        <option>1</option>
-                                    {% else %}
-                                        <option>{{info}}</option>
-                                        <option>0</option>
-                                    {% endif %}
-                                </select>
+                                <a class="btn btn-primary" href="?action=bo">Retour</a>
                             </th>
-                        {% else %}
-                            <th id="user{{users.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
-                        {% endif %}
+                        </tr>
+                    </thead>
+                    {% for article in comments %}
+                        <tr class=' container-fluid  article{{articles.id}}'>
+                            {% set compt = 0 %}
+                            {% for info in article %}
+                                {% if compt == 0 %}
+                                    <th id="article{{article.id}}" class='info' value="{{info}}">{{info}}</th>
+                                    {% set compt = compt + 1 %}
+                                {% else %}
+                                    <th id="article{{article.id}}" class='info' value="{{info}}" contenteditable="true">{{info}}</th>
+                                {% endif %}
+                            {% endfor %}
+                            <th>
+                                <button id="article{{article.id}}" class=" btn btn-success saveComment">Sauvegarder</button>
+                            </th>
+                            <th>
+                                <button id="article{{article.id}}" class=" btn btn-danger deleteComment">Supprimer le commentaire</button>
+                            </th>
+                        </tr>
                     {% endfor %}
-                    <th>
-                        <button id="user{{users.id}}" class=" btn btn-success Save">Save</button>
-                    </th>
-                    <th>
-                        <button id="user{{users.id}}" class=" btn btn-danger deleteUser">Delete User</button>
-                    </th>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-{% endblock %}
-{% block script %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script>
-        var userkeys = {{ userkeys|json_encode|raw }};
-    </script>
-    <script src="assets/script/bo.js"></script>
-{% endblock %}
+                {% endif %}
+            </table>
+        {% endblock %}
+        {% block script %}
+            <script>
+                {% if seeComments == false %}
+                    var userkeys = {{ userkeys|json_encode|raw }};
+                    var articlekeys = {{ articlekeys|json_encode|raw }};
+                {% else %}
+                    var commentkeys = {{ commentskeys|json_encode|raw }};
+                {% endif %}
+            </script>
+            <script src="assets/script/bo.js"></script>
+        {% endblock %}

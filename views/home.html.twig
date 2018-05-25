@@ -22,11 +22,13 @@
     {% endfor %}
     <section class=" home-content">
         <div class="home-item first-item">
-          <div class="first-item-content">
-            <h1>Testons le thé</h1><br><br>
-            <h4>Testhé & approuvé par nos soins</h4><br><br><br>
-            <button  class="btn btn-outline-info"><a href="#news">Découvrir</a></button>
-          </div>
+            <div class="first-item-content">
+                <h1>Testons le thé</h1>
+                <h4>Testhé & approuvé par nos soins</h4>
+                <button class="btn btn-outline-info">
+                    <a href="#news">Découvrir</a>
+                </button>
+            </div>
         </div>
 
         <div class="home-item news-item" id="news">
@@ -142,8 +144,4 @@
         </div>
     </section>
 {% endblock %}
-{% block script %}
-    {% if username is not defined %}
-        <script src="assets/script/home.js"></script>
-    {% endif %}
-{% endblock %}
+{% block script %}{% endblock %}

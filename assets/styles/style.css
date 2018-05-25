@@ -25,6 +25,15 @@
 
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
 
 small
 {
@@ -138,10 +147,12 @@ header {
 .first-item-content h1 {
     font-size: 9vh;
     color: #38393A;
+    margin-bottom: 8%;
 }
 
 .first-item-content h4 {
     color: #38393A;
+    margin-bottom: 8%;  
 }
 
 .first-item-content button {

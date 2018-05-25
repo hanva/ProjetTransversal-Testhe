@@ -21,47 +21,60 @@
                 <a href="?action=disconnect">disconnect</a>
             {% endif %}
             {% block nav %}
-                <a href="?action=home"><img class="logo" src="./assets/styles/logoTesthe.png" alt=""></a>
+                <a href="?action=home"><img class="logo" src="./assets/images/layout/logoTesthe.png" alt=""></a>
                 <div class="menu">
-                  <div class="dropdown">
-                    <span class="menu-items" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/styles/chevron-bas.png"></span>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item dropdown-items" href="?action=actualithe"><h4>Test</h4></a>
-                        <a class="dropdown-item dropdown-items" href="?action=actualithe#inteaview"><h4>Inteaview</h4></a>
-                        <a class="dropdown-item dropdown-items" href="#"><h4>Tea battle</h4></a>
-                      </div>
-                  </div>
                     <div class="dropdown">
-                      <span class="menu-items" class="btn btn-secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/styles/chevron-bas.png"></i></span>
-                      <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-items">
-                           <a class="dropdown-item" href="#"><h4>Pats</h4></a>  
-                           <hr>  
-                           <a class="dropdown-item" href="#">Plats cuisinés</a>
-                           <a class="dropdown-item" href="#">Légumes</a>
-                           <a class="dropdown-item" href="#">Tartes</a> 
-                        </div>
-                        <div class="dropdown-items">
-                           <a class="dropdown-item" href="#"><h4>Desserts</h4></a>   
-                           <hr> 
-                           <a class="dropdown-item" href="#">Gâteaux</a>
-                           <a class="dropdown-item" href="#">Biscuits</a>
-                           <a class="dropdown-item" href="#">Tartes</a> 
-                        </div>
-                        <div class="dropdown-items">
-                           <a class="dropdown-item" href="#"><h4>Instant thé</h4></a> 
-                           <hr>
-                           <a class="dropdown-item" href="#">Bubble tea</a>
-                           <a class="dropdown-item" href="#">Thé glacé</a>
-                           <a class="dropdown-item" href="#">Smoothie</a>    
+                        <span class="menu-items" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item dropdown-items" href="?action=actualithe">
+                                <h4>Test</h4>
+                            </a>
+                            <a class="dropdown-item dropdown-items" href="?action=actualithe#inteaview">
+                                <h4>Inteaview</h4>
+                            </a>
+                            <a class="dropdown-item dropdown-items" href="#">
+                                <h4>Tea battle</h4>
+                            </a>
                         </div>
                     </div>
-                  </div>     
-                    
-                <span class="menu-items">histoire</span>
+                    <div class="dropdown">
+                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
+                    </span>
+                    <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-items">
+                            <a class="dropdown-item" href="#">
+                                <h4>Pats</h4>
+                            </a>
+                            <hr>
+                            <a class="dropdown-item" href="#">Plats cuisinés</a>
+                            <a class="dropdown-item" href="#">Légumes</a>
+                            <a class="dropdown-item" href="#">Tartes</a>
+                        </div>
+                        <div class="dropdown-items">
+                            <a class="dropdown-item" href="#">
+                                <h4>Desserts</h4>
+                            </a>
+                            <hr>
+                            <a class="dropdown-item" href="#">Gâteaux</a>
+                            <a class="dropdown-item" href="#">Biscuits</a>
+                            <a class="dropdown-item" href="#">Tartes</a>
+                        </div>
+                        <div class="dropdown-items">
+                            <a class="dropdown-item" href="#">
+                                <h4>Instant thé</h4>
+                            </a>
+                            <hr>
+                            <a class="dropdown-item" href="#">Bubble tea</a>
+                            <a class="dropdown-item" href="#">Thé glacé</a>
+                            <a class="dropdown-item" href="#">Smoothie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="menu-items" href="?action=history">histoire</a>
             </div>
             <div class="menu-right-items">
-                    
+
                 <div class="search-bar">
                     {% if username is null %}
                         <i class="far fa-user register"></i>
@@ -120,6 +133,9 @@
     </footer>
     <script src="./assets/script/script.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    {% if username is not defined %}
+        <script src="/assets/script/home.js"></script>
+    {% endif %}
     {% block script %}{% endblock %}
 </body>
 </html>
