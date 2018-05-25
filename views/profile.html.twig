@@ -1,12 +1,15 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
+    <section class="profile-content">
     <h1 class="center">Mon compte</h1>
-    <div class="  flex column">
+    <div class="underline underline-actualithe underline-center"></div>
+    <div class="flex column">
+    <div class="user-infos">
         <h2>Mes informations personnelles</h2>
         <form method="POST" action="?action=editProfile">
             <div class="flex row">
-                <div>
-                    <p>Nom</p>
+                <div class="profile-name">
+                    <p class="font-weight-bold">Nom</p>
                     {% if user.lastname is empty %}
                         <p name="lastname" class="movable name">Dupont</p>
                     {% else %}
@@ -14,45 +17,48 @@
                     {% endif %}
                 </div>
                 <div>
-                    <p>Prénom</p>
+                    <p class="font-weight-bold">Prénom</p>
                     {% if user.firstname is empty %}
                         <p name="firstname" class="movable firstname">Jean</p>
                     {% else %}
                         <p name="firstname" class="movable firstname">{{user.firstname}}</p>
                     {% endif %}
                 </div>
-            </div>
+            </div><br>
             <div class="flex row">
-                <div>
-                    <p>Pseudo</p>
+                <div class="profile-pseudo">
+                    <p class="font-weight-bold">Pseudo</p>
                     <p name="username" class="movable username">{{user.username}}</p>
                 </div>
                 <div>
-                    <p>Email</p>
+                    <p class="font-weight-bold">Email</p>
                     <p name="email" class="movable email">{{user.email}}</p>
                 </div>
-            </div>
+            </div><br>
+            <div class="profile-seonds-infos">
             <div class="">
-                <p>Date de naissance</p>
+                <p class="font-weight-bold">Date de naissance</p>
                 {% if user.birthday is empty %}
                     <p name="birthday" class="movable birthday">6 novembre 1999</p>
                 {% else %}
                     <p name="birthday" class="movable birthday">{{user.birthday}}</p>
                 {% endif %}
-            </div>
+            </div><br>
             <div class="">
-                <p>A propos</p>
+                <p class="font-weight-bold">A propos</p>
                 {% if user.description is empty %}
-                    <p name="description" class="movable description">My description</p>
+                    <p name="description" class="movable description font-weight-bold">My description</p>
                 {% else %}
                     <p name="description" class="movable description">{{user.description}}</p>
                 {% endif %}
+            </div><br><br>
             </div>
-            <a class="passbtn" href="?action=modifyPassword">
-                Changer de mot de passe</a>
-            <button class="cancelbtn none">Anuller</button>
-            <button class="changebtn">Modifier</button>
-            <button class="savebtn none">Enregistrer</button>
+            <a class="passbtn btn btn-outline-dark" href="?action=modifyPassword">
+                Changer de mot de passe</a> 
+            <button class="cancelbtn none btn btn-outline-dark">Anuller</button>
+            <button class="changebtn btn btn-outline-dark">Modifier</button>
+            <button class="savebtn none btn btn-outline-dark">Enregistrer</button>
+            </div>
         </form>
     </div>
     <div class="articles">
@@ -67,6 +73,7 @@
 
         {% endfor %}
     </div>
+    </section>
 {% endblock %}
 {% block script %}
     <script>
