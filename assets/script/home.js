@@ -6,6 +6,7 @@ var pass = document.querySelector(".passwordforgotenbtn");
 var popregister = document.querySelector(".register-content")
 var poppassword = document.querySelector(".password-content")
 var loginpop = document.querySelector(".login-content")
+var grey = document.querySelector(".grayBack");
 console.log(register);
 
 for (var i = 0; i < register.length; i++) {
@@ -14,6 +15,7 @@ for (var i = 0; i < register.length; i++) {
     }
 }
 function printRegister() {
+    jQuery(document.body).css('overflow', 'hidden')
     switchClass(popregister, loginpop, poppassword);
     openPop();
     login.onclick = function () {
@@ -84,6 +86,7 @@ function switchClass(first, second, third) {
     }
 }
 function closePop(el) {
+    jQuery(document.body).css('overflow', 'scroll');
     popup.classList.add("none");
     if (el.classList.contains("flex")) {
         el.classList.remove("flex");

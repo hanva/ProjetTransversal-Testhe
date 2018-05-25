@@ -3,6 +3,7 @@ namespace Controller;
 
 use Cool\BaseController;
 use Model\ArticleManager;
+use Model\SecurityManager;
 use Model\UserManager;
 
 class UserController extends BaseController
@@ -16,7 +17,10 @@ class UserController extends BaseController
             return $this->redirectToRoute("article", $data);
         }
         $ArticleManager = new ArticleManager();
-        $result = $articleMangager->writeComment($_POST['content'], $_POST['article_id'], $_SESSION['username']);
+        $data = $ArticleManager->commentArticle($_POST['content'], $_POST['id'], $_SESSION['username']);
+        $securityManager = new SecurityManager();
+        $securityManager->writeInLogs($_SESSION['username'], "writeCommentAction", "log", "New Comment : ");
+        return json_encode($data);
     }
     public function profileAction()
     {
@@ -27,7 +31,7 @@ class UserController extends BaseController
             $articleMangager = new ArticleManager();
             $user = $userManager->getUserInfos($_SESSION['username']);
             $userId = $userManager->getUserId($_SESSION['username']);
-            $articles = $articleMangager->getArticlesById($userId);
+            $articles = $articleMangager->getArticlesByUserId($userId);
             $comments = $articleMangager->getCommentsById($userId);
             $data = [
                 'user' => $user,

@@ -14,7 +14,6 @@ class Router
 
             $controller = new $controller_name;
             $response = call_user_func([$controller, $method_name]);
-
             return $response;
         } else {
             header("HTTP/1.0 404 Not Found");

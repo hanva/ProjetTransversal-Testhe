@@ -41,9 +41,9 @@
                     <div class="card-body">
                         <h5 class="card-title">
                             {{article.title}}</h5>
-                        <p class="card-text">
-                            {{ article.content|raw }}</p>
-                        <a href="?action=seeArticle&article={{article.id}}" class="btn btn-outline-info articles-btn">Lire</a>
+                        <div class="card-text overflow">
+                            {{ article.content|raw }}</div>
+                        <a href="?action=article&article={{article.id}}" class="btn btn-outline-info articles-btn">Lire</a>
                     </div>
                 </div>
                 {% set count = count + 1 %}

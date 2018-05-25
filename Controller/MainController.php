@@ -135,10 +135,18 @@ class MainController extends BaseController
 
     public function articleAction()
     {
+        if (!empty($_GET['article'])) {
+            $articleManager = new ArticleManager();
+            $article = $articleManager->getArticleById($_GET['article']);
+            if ($article === false) {
+                return $this->redirectToRoute("actualithe");
+            }
+            $comments = $articleManager->seeCommentsByArticleId($_GET['article']);
+        }
         $data = [
-
+            'article' => $article,
+            'comments' => $comments,
         ];
-
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }
