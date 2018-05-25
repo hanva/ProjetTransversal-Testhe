@@ -3,6 +3,7 @@
 namespace Model;
 
 use Cool\DBManager;
+use Model\UserManager;
 use PDO;
 
 class ArticleManager
@@ -28,14 +29,6 @@ class ArticleManager
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $result = $pdo->query("SELECT * FROM comments where user_id=$id  ORDER BY id DESC ");
-        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
-        return $posts;
-    }
-    public function getArticlesById($id)
-    {
-        $dbm = DBManager::getInstance();
-        $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT * FROM articles where user_id=$id  ORDER BY id DESC ");
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
@@ -98,5 +91,31 @@ class ArticleManager
         $result = $pdo->query("SELECT * FROM articles WHERE id = $id");
         $posts = $result->fetch(PDO::FETCH_ASSOC);
         return $posts;
+    }
+    public function getArticlesByUserId($id)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM articles where user_id=$id  ORDER BY id DESC ");
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
+    public function commentArticle($content, $id, $username)
+    {
+        $userManager = new UserManager();
+        $userId = $userManager->getUserId($username);
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->prepare('INSERT INTO `comments` (`id`, `user_id`, `article_id`, `content`,`user_name`) VALUES (NULL, :user_id, :article_id, :content,:user_name)');
+        $result->bindParam(':user_id', $userId);
+        $result->bindParam(':article_id', $id);
+        $result->bindParam(':content', $content);
+        $result->bindParam(':user_name', $username);
+        $result->execute();
+        $data = [
+            'username' => $username,
+            'content' => $content,
+        ];
+        return $data;
     }
 }

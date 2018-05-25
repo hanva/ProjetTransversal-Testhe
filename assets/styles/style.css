@@ -782,9 +782,7 @@ header {
 .fa-times:hover {
     font-size: 1vw;
 }
-
 /* css du sous menu deroulant actualithé */
-
 .dropdown-menu {
     margin-top: 28%;
     width: 100vw;
@@ -1082,4 +1080,10 @@ header {
 
 .profile-content textarea{
     border-radius: 5px;
+}
+
+.overflow p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
