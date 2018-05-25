@@ -15,16 +15,11 @@
     </head>
     <body>
         <header>
-            {% if username is defined %}
-                <a href="?action=home">Home</a>
-                <a href="?action=addArticle">add an article</a>
-                <a href="?action=disconnect">disconnect</a>
-            {% endif %}
             {% block nav %}
                 <a href="?action=home"><img class="logo" src="./assets/images/layout/logoTesthe.png" alt=""></a>
                 <div class="menu" id="header">
                     <div class="dropdown">
-                        <span class="menu-items" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">actualithés<span class="caret"></span><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></span>
+                        <span class="menu-items" id="dropdownMenuButton" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">actualithés</a><span class="caret"></span><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></span>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item dropdown-items" href="?action=actualithe">
                                 <h4>Test</h4>
@@ -38,7 +33,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">degusthe<img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
+                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">degusthe</a><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
                     </span>
                     <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-items">
@@ -70,16 +65,23 @@
                         </div>
                     </div>
                 </div>
-                <span class="menu-items">histoire</span>
+                <span class="menu-items"><a href="?action=history">histoire</a></span>
             </div>
             <div class="menu-right-items">
                 <div class="search-bar">
                     {% if username is null %}
                         <i class="far fa-user printregisterbtn"></i>
                     {% else %}
-                        <a href="?action=profile" class="far fa-user"></a>
+                    <div class="dropdown">
+                        <i class="far fa-user" data-toggle="dropdown"></i>
+                          <div class="dropdown-menu dropdown-menu3" aria-labelledby="dropdownMenu2">   
+                            <h4><a href="?action=profile">Profile</a></h4>
+                            <h4><a href="?action=addArticle">Add an article</a></h4>
+                            <h4><a href="?action=disconnect">Disconnect</a></h4>
+                          </div>
+                    </div>               
+                    {# <a href="?action=profile" class="far fa-user"></a> #}
                     {% endif %}
-                    <i class="fas fa-search"></i>
                 </div>
             </div>
         {% endblock %}
@@ -191,25 +193,23 @@
             <div class="footer-navigation">
                 <h4>Navigation</h4><br><br>
                 <ul class="list">
-                    <li>Actualithés</li>
+                    <li><a href="?action=actualithe">Actualithés</a></li>
                     <li>Dégusthé</li>
-                    <li>Histoire</li>
-                    <li>Mon compte</li>
+                    <li><a href="?action=history">histoire</a></li>
+                    <li>
+                        {% if username is defined %}
+                          <a href="?action=profile">Mon compte</a>
+                        {% else %}
+                          Mon compte  
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
             <div class="footer-community">
                 <h4>Communauthé</h4><br><br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia a voluptas
-                </p><br><br>
-                <img src="https://i.pinimg.com/originals/61/87/63/618763f9b5319f0518b6c45b1f60b601.png">
-                <img src="https://www.bostoncarkeys.com/wp-content/uploads/2017/01/facebook-icon.png">
+                <img src="https://www.sim-kool.com/wp-content/uploads/2017/06/1af63861-e52b-4a8c-92ec-85bc413436d9.facebook-logo-rond.png">
                 <img src="http://www.authormedia.com/wp-content/uploads/2013/04/pinterest_badge_red.png">
 
-            </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4><br><br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate officia
-                </p>
             </div>
         </div>
     </footer>

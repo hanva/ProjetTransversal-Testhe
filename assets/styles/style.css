@@ -347,7 +347,6 @@ header {
 
 .tea-battle-underline {
     background-color: #C9E8E0;
-    margin-left: 5%;
     height: 5px;
     width: 15%;
     border-radius: 5px;
@@ -541,6 +540,7 @@ header {
     margin: 2% 10%;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly
 }
 
 .footer-infos {
@@ -573,8 +573,8 @@ header {
 }
 
 .footer-community img {
-    height: 13%;
-    width: 10%;
+    height: 28%;
+    width: 20%;
     margin-right: 4%;
 }
 
@@ -797,6 +797,12 @@ header {
     height: 18vh; 
 }
 
+.dropdown-menu3 {
+    margin-left: -83VW;
+    width: 99vw;
+    margin-top: 86%;
+}
+
 .dropdown-menu2 a {
     text-decoration: none;
     color: black;
@@ -865,7 +871,6 @@ header {
 
 .other-actualithes {
     width: 100%;
-    height: 200vh;
     display: flex;
     flex-direction: column;
     margin-bottom: -30%;
@@ -1087,3 +1092,4 @@ header {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
