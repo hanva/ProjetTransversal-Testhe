@@ -82,12 +82,13 @@ for (var i = 0; i < saveComment.length; i++) {
 };
 for (var i = 0; i < savebtn.length; i++) {
     savebtn[i].onclick = function () {
-        saveAction(this, userkeys, "modifyDataBase");
+        saveAction(this, userkeys, "modifyUser");
     }
 };
 for (var i = 0; i < deleteArticle.length; i++) {
     deleteArticle[i].onclick = function () {
         deleteAction(this, "deleteArticle");
+        captureEvents
     }
 };
 for (var i = 0; i < deleteComment.length; i++) {

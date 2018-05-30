@@ -16,6 +16,14 @@ class ArticleManager
         $posts = $result->fetchAll(PDO::FETCH_ASSOC);
         return $posts;
     }
+    public function selectArticleByArticleTitle($title)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM articles where title='$title'");
+        $posts = $result->fetch(PDO::FETCH_ASSOC);
+        return $posts;
+    }
     public function seeAllRecettes()
     {
         $dbm = DBManager::getInstance();
@@ -117,5 +125,51 @@ class ArticleManager
             'content' => $content,
         ];
         return $data;
+    }
+    public function searchLikeById($userId, $articleId)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT * FROM likes where article_id= $articleId AND user_id = $userId");
+        $result = $result->fetch(PDO::FETCH_COLUMN);
+        if ($result === false) {
+            return false;
+        }
+        return true;
+
+    }
+    public function like($userId, $articleId)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+
+        $result = $pdo->query("SELECT likes FROM articles where id = $articleId");
+        $likes = $result->fetch(PDO::FETCH_COLUMN);
+        $likes++;
+        $result = $pdo->prepare("UPDATE articles SET likes=$likes WHERE id = $articleId");
+        $result->execute();
+
+        $result = $pdo->prepare("INSERT INTO `likes` (`id`,`user_id`,`article_id`) VALUES (NULL,:user_id,:article_id)");
+        $result->bindParam(':user_id', $userId);
+        $result->bindParam(':article_id', $articleId);
+        $result->execute();
+
+        return $likes;
+
+    }
+    public function unlike($userId, $articleId)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT likes FROM articles where id = $articleId");
+        $likes = $result->fetch(PDO::FETCH_COLUMN);
+        $likes--;
+        $stmt = $pdo->prepare("UPDATE articles SET likes=$likes WHERE id = $articleId");
+        $stmt->execute();
+
+        $stmt = $pdo->query("DELETE FROM likes where article_id = $articleId");
+        $stmt->execute();
+
+        return $likes;
     }
 }

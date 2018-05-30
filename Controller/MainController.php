@@ -12,9 +12,18 @@ class MainController extends BaseController
 {
     public function homeAction()
     {
-        $data = [];
+        $articleManager = new ArticleManager();
+        $tbArticle1 = $articleManager->selectArticleByArticleTitle("Camellia Assamica");
+        $tbArticle2 = $articleManager->selectArticleByArticleTitle("Rooibos");
+        $data = [
+            'tbArticle1' => $tbArticle1,
+            'tbArticle2' => $tbArticle2,
+        ];
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
+            if (isset($_GET['addArticle']) && $_GET['addArticle'] == 1) {
+                $data['addArticle'] = true;
+            }
         }
         return $this->render('home.html.twig', $data);
 

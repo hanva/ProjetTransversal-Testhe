@@ -397,7 +397,7 @@ header {
     margin-left: 5%;
 }
 
-.first-article a {
+.likes {
     background-color: #BBD9D1;
     border: none;
     color: white;
@@ -406,6 +406,7 @@ header {
     text-decoration: none;
     display: inline-block;
     font-size: 0.72vw;
+    outline: none;
     margin: 37% 0 0% 30%;
 }
 
@@ -433,8 +434,7 @@ header {
     margin-left: 5%;
 }
 
-.second-article a {
-    background-color: #BBD9D1;
+.second-article button {
     border: none;
     color: white;
     padding: 10px 35px;
@@ -444,7 +444,6 @@ header {
     font-size: 0.72vw;
     margin: 5% 0 0 25%;
 }
-
 
 /* receipts section css */
 
@@ -1092,4 +1091,10 @@ header {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
+.recette{
+    display:inline;
+}
+.highlight{
+    background-color:#F8E5E7;
+    transition:1s;
+}

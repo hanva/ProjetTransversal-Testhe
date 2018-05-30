@@ -15,26 +15,40 @@ class ModeratorController extends BaseController
         if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
         }
+        $securityManager = new SecurityManager();
+        if ($securityManager->getUserStatus($_SESSION['username']) < 2) {
+            $userStatus = "user";
+        } else {
+            $userStatus = "moderator";
+        }
         if (!empty($_FILES)) {
-            $file = $_FILES['picture']['name'];
+            $file = $_FILES['file']['name'];
             $filesManager = new FilesManager();
             $a = '../';
             if (strpos($file, $a) !== false) {
-                $securityManager = new SecurityManager();
                 $securityManager->writeInLogs($_SESSION['username'], "addArticleAction", "error", "Tried to pass ../ in file");
-                return $this->redirectToRoute('home');
+                return \json_encode('error');
             }
             $filesManager->upload($file);
+            return \json_encode("200");
+        }
+        if (!empty($_POST['content'])) {
             $userMangager = new UserManager();
             $user_id = $userMangager->getUserId($_SESSION['username']);
             $formMangager = new FormManager();
-            $formMangager->addArticle($user_id, $_POST['title'], $file, $_POST['content'], 0, $_POST['tag']);
             $securityManager = new SecurityManager();
-            $securityManager->writeInLogs($_SESSION['username'], "addArticleAction", "log", "Created an article");
-            return $this->redirectToRoute('home');
+            if (isset($_POST['ingredients'])) {
+                $formMangager->addArticle($user_id, $_POST['title'], $_POST['picture'], $_POST['content'], 1, $_POST['ingredients'], $_POST['tag']);
+                $securityManager->writeInLogs($_SESSION['username'], "addArticleAction", "log", "Created a Recipe");
+            } else {
+                $formMangager->addArticle($user_id, $_POST['title'], $_POST['picture'], $_POST['content'], 0, "", "");
+                $securityManager->writeInLogs($_SESSION['username'], "addArticleAction", "log", "Created an article");
+            }
+            return \json_encode('200');
         }
         $data = [
             'username' => $_SESSION['username'],
+            'user' => $userStatus,
         ];
         return $this->render('addArticle.html.twig', $data);
     }
@@ -52,7 +66,8 @@ class ModeratorController extends BaseController
             $formMangager->modifyArticle($_POST['article_id'], $_POST['title'], $file, $_POST['content']);
             $securityManager = new SecurityManager();
             $securityManager->writeInLogs($_SESSION['username'], "modifyArticleAction", "log", "modified an article");
-            return $this->redirectToRoute('home');
+            $data = "modify=1";
+            return $this->redirectToRoute('profile', $data);
         } else if (!empty($_SESSION['username']) === false) {
             return $this->redirectToRoute('home');
         } else if (!empty($_GET['article']) && intval($_GET['article'])) {
