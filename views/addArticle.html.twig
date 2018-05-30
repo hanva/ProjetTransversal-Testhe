@@ -9,10 +9,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.6/css/froala_style.min.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block content %}
-    <form action="?action=addArticle" method="POST" name="articleform" enctype="multipart/form-data">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
-        <select name="tag">
+    <div class="formArticle">
+        <label for="title">Titre</label>
+        <input class="title" type="text" name="title" id="title">
+        {% if user == "moderator" %}
+            <select class="type" name="type">
+                <option>article</option>
+                <option>recette</option>
+            </select>
+        {% else %}
+            <p class="type">Recette</p>
+            <input type="hidden" value="recette" name="type">
+        {% endif %}
+        <select class="tag select none" name="tag">
             <option>Plats cuisinés</option>
             <option>Légumes</option>
             <option>Tartes salées</option>
@@ -23,13 +32,23 @@
             <option>Thé Glacé</option>
             <option>Smoothie</option>
         </select>
-        <input type="file" accept=".jpg, .jpeg, .png" id="picture" name="picture">
+        <input class="picture" type="file" accept=".jpg, .jpeg, .png" id="picture" name="picture">
         <label for="content">Contenu</label>
-        <textarea name="content" rows="10" cols="50"></textarea>
-        <button type="submit">Post</button>
-    </form>
+        <textarea class="content" name="content" rows="10" cols="50"></textarea>
+        <button class="addinput none">Ajouter un Ingredient</button><br>
+        <div class="ingredients"></div>
+        <button class="addArticle">Post</button>
+    </div>
 {% endblock %}
 {% block script %}
+    <script>
+        if ("{{user}}" === "user") {
+            var type = 'recette';
+            console.log(type);
+        } else {
+            var type = "article";
+        }
+    </script>
     <script src="./node_modules/froala-editor/js/froala_editor.min.js"></script>
     <script src="assets/script/addArticle.js"></script>
 {% endblock %}

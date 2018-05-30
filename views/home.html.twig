@@ -2,6 +2,10 @@
 
 {% block page_title %}Cool Framework{% endblock %}
 {% block content %}
+    {% if addArticle is defined %}
+        <p>
+            Votre article/recette a été postée</p>
+    {% endif %}
     <section class=" home-content">
         <div class="home-item first-item">
             <div class="first-item-content">
@@ -83,19 +87,18 @@
                 </div>
                 <div class="tea-battle-articles">
                     <div class="first-article">
-                        <img src="http://www.rivertea.com/blog/wp-content/uploads/2013/01/Black-Tea-is-Red-When-Brewed-700x325.jpg">
-                        <h4>Camellia Assamica
+                        <img src="./uploads/{{tbArticle1.pic}}">
+                        <h4>{{tbArticle1.title}}
                         </h4>
-                        <p>La variété à grandes feuilles Camellia Sinensis variété Assamica, Bien qu’en terme de rendement cette variété soit plus productive,elle contient une grande concentration de tanins (goût amer) et offre des bienfaits pour la santé inférieurs à son homologue, la variété Sinensis.
-                        </p>
-                        <a href="?action=actualithe">Découvrir</a>
+                        {{tbArticle1.content|raw}}
+                        <button id="{{tbArticle1.id}}" class="likes">{{tbArticle1.likes}}</button>
                     </div>
                     <div class="second-article">
-                        <h4>Rooibos</h4>
-                        <p>En Afrique du Sud, c’est la boisson reine généralement consommée avec du lait. On récolte les rameaux avec ses feuilles, on les passe dans des rouleuses pour y casser les fibres et ainsi commencer la fermentation.
-                        </p>
-                        <img src="http://cdn2.stylecraze.com/wp-content/uploads/2014/08/27-Benefits-Of-Rooibos-Tea-For-Your-Health-1.jpg">
-                        <a href="?action=actualithe">Découvrir</a>
+                        <h4>{{tbArticle2.title}}
+                        </h4>
+                        {{tbArticle2.content|raw}}
+                        <img src="./uploads/{{tbArticle2.pic}}">
+                        <button id="{{tbArticle2.id}}" class="likes">{{tbArticle2.likes}}</button>
                     </div>
                 </div>
             </div>
@@ -129,4 +132,7 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block script %}
+    <script src="assets/script/likes.js"></script>
 {% endblock %}

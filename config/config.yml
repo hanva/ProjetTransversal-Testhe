@@ -14,6 +14,7 @@ routes:
     profile: 'User:profile'
     editProfile: 'User:editProfile'
     modifyPassword: 'User:modifyPassword'
+    like: 'User:like'
     addArticle: 'Moderator:addArticle'
     modifyArticle: 'Moderator:modifyArticle'
     bo: 'Admin:bo'

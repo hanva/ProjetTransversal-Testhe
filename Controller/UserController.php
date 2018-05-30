@@ -8,6 +8,22 @@ use Model\UserManager;
 
 class UserController extends BaseController
 {
+    public function likeAction()
+    {
+        $articleMangager = new ArticleManager();
+        $userManager = new UserManager();
+        $userId = $userManager->getUserId($_SESSION['username']);
+        $isLiked = $articleMangager->searchLikeById($userId, $_GET['id']);
+        if (isset($_GET['id'])) {
+            if ($isLiked === false) {
+                $likes = $articleMangager->like($userId, $_GET['id']);
+            } else {
+                $likes = $articleMangager->unlike($userId, $_GET['id']);
+            }
+            return json_encode($likes);
+        }
+        return json_encode($isLiked);
+    }
     public function writeCommentAction()
     {
         if (empty($_SESSION['username'])) {
@@ -39,6 +55,9 @@ class UserController extends BaseController
                 'articles' => $articles,
                 'comments' => $comments,
             ];
+            if (isset($_GET['modify']) && $_GET['modify'] === "1") {
+                $data['modify'] = 1;
+            }
             return $this->render('profile.html.twig', $data);
         }
     }
