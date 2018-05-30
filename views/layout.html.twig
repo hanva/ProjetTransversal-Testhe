@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">degusthe</a><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
+                        <span class="menu-items" id="dropdownMenu2" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false"><a href="">dégusthé</a><img class="little-arrow" src="assets/images/layout/chevron-bas.png"></i>
                     </span>
                     <div class="dropdown-menu dropdown-menu2" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-items">
@@ -63,6 +63,10 @@
                             <a class="dropdown-item" href="#">Thé glacé</a>
                             <a class="dropdown-item" href="#">Smoothie</a>
                         </div>
+                        <div class="dropdown-items img-btn">
+                            <img src="https://cac.img.pmdstatic.net/fit/http.3A.2F.2Fwww.2Ecuisineactuelle.2Efr.2Fvar.2Fcui.2Fstorage.2Fimages.2Frecettes-de-cuisine.2Frecettes-par-evenements.2Frecette-tea-time.2Fthe-a-la-menthe-et-aux-epices.2F932084-2-fre-FR.2Fthe-a-la-menthe-et-aux-epices.2Ejpg/748x372/quality/80/crop-from/center/the-a-la-menthe-et-aux-epices.jpeg" alt="">
+                            <button><a href="?action=actualithe">Dernière recette</a></button>
+                        </div>
                     </div>
                 </div>
                 <span class="menu-items"><a href="?action=history">histoire</a></span>
@@ -75,9 +79,9 @@
                     <div class="dropdown">
                         <i class="far fa-user" data-toggle="dropdown"></i>
                           <div class="dropdown-menu dropdown-menu3" aria-labelledby="dropdownMenu2">   
-                            <h4><a href="?action=profile">Profile</a></h4>
-                            <h4><a href="?action=addArticle">Add an article</a></h4>
-                            <h4><a href="?action=disconnect">Disconnect</a></h4>
+                            <h4><a href="?action=profile">Profil</a></h4>
+                            <h4><a href="?action=addArticle">Ajouter un article</a></h4>
+                            <h4><a href="?action=disconnect">Déconnexion</a></h4>
                           </div>
                     </div>               
                     {# <a href="?action=profile" class="far fa-user"></a> #}
@@ -123,7 +127,7 @@
                     <i id="crossregister" class="fas fa-times"></i>
                 </div>
                 <div class="form-content">
-                    <h1>Crée un compte</h1>
+                    <h1>Créer un compte</h1>
                     <div class="register-infos register-password">
                         <label for="email">Adresse email</label>
                         <input type="email" class="emailinput" name="email" placeholder="entrer votre adresse email">
@@ -182,7 +186,7 @@
     <footer class="footer-item">
         <div class="footer-content">
             <div class="footer-infos">
-                <h4>Information</h4><br><br>
+                <h4>Information</h4><br>
                 <ul class="list">
                     <li>A propos</li>
                     <li>Contact</li>
@@ -191,11 +195,11 @@
                 </ul>
             </div>
             <div class="footer-navigation">
-                <h4>Navigation</h4><br><br>
+                <h4>Navigation</h4><br>
                 <ul class="list">
                     <li><a href="?action=actualithe">Actualithés</a></li>
                     <li>Dégusthé</li>
-                    <li><a href="?action=history">histoire</a></li>
+                    <li><a href="?action=history">Histoire</a></li>
                     <li>
                         {% if username is defined %}
                           <a href="?action=profile">Mon compte</a>
@@ -206,9 +210,10 @@
                 </ul>
             </div>
             <div class="footer-community">
-                <h4>Communauthé</h4><br><br>
-                <img src="https://www.sim-kool.com/wp-content/uploads/2017/06/1af63861-e52b-4a8c-92ec-85bc413436d9.facebook-logo-rond.png">
-                <img src="http://www.authormedia.com/wp-content/uploads/2013/04/pinterest_badge_red.png">
+                <h4>Communauthé</h4><br>
+                <p>Rejoignez notre communauté !</p>
+                <img src="assets/images/layout/facebookIcon.png">
+                <img src="assets/images/layout/instagramIcon.png">
 
             </div>
         </div>

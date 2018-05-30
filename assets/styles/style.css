@@ -9,36 +9,75 @@
 }
 
 @font-face {
-    font-family: "DomaineNaro";
-    src: url("font/DomaineDispNar-Semibold.otf");
+    font-family: "OpenSans";
+    src: url("font/OpenSans-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Montserrat";
-    src: url("font/Montserrat-Regular.ttf");
+    font-family: "OpenSansBold";
+    src: url("font/OpenSans-Bold.ttf");
 }
 
-*{
+@font-face {
+    font-family: "OpenSansItalic";
+    src: url("font/OpenSans-Italic.ttf");
+}
+
+@font-face {
+    font-family: "OpenSansSemiBold";
+    src: url("font/OpenSans-SemiBold.ttf");
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: #C9E8E0;
+    border-color: #C9E8E0;
+}
+
+*{    
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: #38393A;
+}
+
+p {
+    font-family: "OpenSans"; 
+    letter-spacing: 1px;
+}
+
+li {
+    font-family: "OpenSans"; 
+}
+
+hr {    
+    border: solid 2px #CEEAE4;
+}
+
+button {
+    outline: none;
+}
+
+input {
+    outline: none;
+}
+
+button :hover {
+    cursor: pointer;
+}
+
+.loginbtn :hover {
+    cursor: pointer;
 }
 
 a:hover {
     text-decoration: none;
-    color: black;
 }
 
-small
-{
-    color: purple;
-}
 .none{
     display: none;
 }
@@ -52,10 +91,10 @@ small
     flex-direction: row;
 }
 
+
 /* header css */
 
 header {
-    font-family: "Montserrat";
     height: 12vh;
     display: flex;
     flex-direction: row;
@@ -67,6 +106,16 @@ header {
     width: 100%;
     box-shadow: 0.312rem 0.625rem 0.5rem 0.625rem #C7E7DF;
     z-index: 3;
+}
+
+header a {
+    font-family: "OpenSansBold";
+    color: #38393A;
+}
+
+header a:hover {
+    color: #6B6C6E;
+    transition: 0.5s;
 }
 
 .menu {
@@ -87,14 +136,27 @@ header {
 }
 
 .menu-right-items {
-    width: 20%;
+    width: 3%;
     display: flex;
     justify-content: center;
     font-size: 1.35vw;
+    margin-left: 8vw;
+}
+
+.menu-right-items :hover {
+    cursor: pointer;
 }
 
 .fa-user {
     margin-right: 5vh;
+}
+
+.dropdown {
+    width: 14vw;
+}
+
+.dropdown a {
+    margin-right: 3%;
 }
 
 .little-arrow {
@@ -121,12 +183,18 @@ header {
     font-size: 0.52vw;
 }
 
+.home-item h1 {
+    font-family: "DomaineDispNar-bold";
+    font-size: 3.5vw;
+    color: #38393B;
+}
+
 /* background img section css */
 
 .first-item {
     height: 86vh;
     width: 100%;
-    background-image: url('imgHeader.jpg');
+    background-image: url('../images/home/imgHeader.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -143,6 +211,7 @@ header {
 }
 
 .first-item-content h1 {
+    font-family: "DomaineDispNar-bold";
     font-size: 4.5vw;
     color: #38393A;
     margin-bottom: 8%;
@@ -151,18 +220,36 @@ header {
 .first-item-content h4 {
     color: #38393A;
     margin-bottom: 8%;  
+    font-family: "OpenSansItalic";
 }
 
 .first-item-content button {
-    width: 10vw;
-    border: solid 3px rgb(203, 208, 219);
-    color: rgb(203, 208, 219);
-    border-radius: 2px; 
+    background-color: white;
+    border: solid 3px #C7E7E0;
+    width: 12vw;
+    height: 2.5vw;;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.86vw;
+    font-family: "OpenSansBold";
+    text-transform: uppercase;
 }
 
 .first-item-content a {
     text-decoration: none;
-    color: rgb(203, 208, 219);
+    color: #C7E7E0;
+    letter-spacing: 3px;
+}
+
+.first-item-content a:hover {
+    color: white;
+    transition: 0.5s;
+}
+
+.first-item-content button:hover {
+    background-color: #C7E7E0;
+    transition: 0.5s;
 }
 
 /* news section css */
@@ -202,7 +289,7 @@ header {
 }
 
 .news-text {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin: 0 5%;
 }
 
@@ -210,12 +297,22 @@ header {
     background-color: #C7E7DF; /* Green */
     border: none;
     color: white;
-    padding: 9px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.72vw;
+    font-size: 0.86vw;
     text-transform: uppercase;
+    width: 10vw;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "OpenSansBold";
+}
+
+.news-text a:hover {
+    background-color: #DCF0EB;
+    transition: 0.5s;
 }
 
 .right-side-news {
@@ -298,11 +395,13 @@ header {
 
 .my-test-content h4 {
     font-size: 1.6vw;
-    margin-bottom: 20%;
+    margin-bottom: 15%;
+    margin-top: 12%;
+    font-family: "DomaineDispNar-bold";
 }
 
 .my-test-content p {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
 }
 
 .my-test-content button {
@@ -320,7 +419,7 @@ header {
 }
 
 .last-test-title {
-    margin: 3% auto 0 auto;
+    margin: 0 auto 3% auto;
     font-size: 2.4vw;
 }
 
@@ -350,10 +449,11 @@ header {
     height: 5px;
     width: 15%;
     border-radius: 5px;
+    margin: 0 0 0 3%;
 }
 
 .tea-battle-subtitles {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     width: 90%;
     margin: 0 auto;
     margin-top: 5%;
@@ -368,14 +468,13 @@ header {
     justify-content: space-between;
 }
 
-.tea-battle-articles h4 {
-    margin-bottom: 10%;
-}
+
 
 .first-article {
     width: 30%;
     height: 80%;
     margin-top: 3%;
+    padding: 10px;
     background-color: #F2EFE8;
 }
 
@@ -388,25 +487,34 @@ header {
 }
 
 .first-article h4 {
+    font-family: "DomaineDispNar-bold";
+    padding: 10px;
     font-size: 1.9vw;
     margin-left: 5%;
 }
 
 .first-article p {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin-left: 5%;
+    padding: 10px;
 }
 
 .first-article a {
-    background-color: #BBD9D1;
+    background-color: #C7E7DF;
     border: none;
     color: white;
-    padding: 10px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.72vw;
-    margin: 37% 0 0% 30%;
+    font-size: 0.86vw;
+    text-transform: uppercase;
+    width: 10vw;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "OpenSansBold";
+    margin: 37% 0 0% 20%;
 }
 
 .second-article {
@@ -423,26 +531,35 @@ header {
 }
 
 .second-article h4 {
+    font-family: "DomaineDispNar-bold";
     font-size: 1.9vw;
     margin-left: 5%;
     margin-top: 10%;
+    padding: 10px;
 }
 
 .second-article p {
-    font-size: 0.96vw;
+    padding: 10px;
+    font-size: 0.86vw;
     margin-left: 5%;
 }
 
 .second-article a {
-    background-color: #BBD9D1;
+    background-color: #C7E7DF;
     border: none;
     color: white;
-    padding: 10px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.72vw;
-    margin: 5% 0 0 25%;
+    font-size: 0.86vw;
+    text-transform: uppercase;
+    width: 10vw;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "OpenSansBold";
+    margin: 20% 0 0 25%;
 }
 
 
@@ -455,6 +572,7 @@ header {
 }
 
 .receips-title {
+    margin: 3% auto 3% auto;
     font-size: 2.8vw;
     text-align: center;
 }
@@ -500,21 +618,23 @@ header {
 }
 
 .receips-right-side h4 {
+    font-family: "DomaineDispNar-bold";
     font-size: 1.9vw;
     margin-bottom: 8%;
 }
 
 .receips-right-side p {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin-bottom: 7%;
 }
 
 .receips-right-side h5 {
+    font-family: "DomaineDispNar-bold"; 
     font-size: 1.4vw;
 }
 
 .receips-right-side li {
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin: 2% 0 0 5%;
 }
 
@@ -531,7 +651,7 @@ header {
     background-color: #F4F4F4;
     height: 40vh;
     width: 100%;
-    margin-top: 35%;
+    margin-top: 45%;
 }
 
 .footer-content {
@@ -550,16 +670,17 @@ header {
 
 .footer-content li{
     list-style: none;
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin-bottom: 5%;
 }
 
 .footer-content p{
-    font-size: 0.96vw;
+    font-size: 0.86vw;
 }
 
 .footer-content h4 {
-    font-size: 1.9vw;
+    font-family: "DomaineDispNar-Bold";
+    font-size: 1.5vw;
 }
 
 .footer-navigation {
@@ -570,12 +691,6 @@ header {
 .footer-community {
     height: 100%;
     width: 27%;
-}
-
-.footer-community img {
-    height: 28%;
-    width: 20%;
-    margin-right: 4%;
 }
 
 .footer-newsletter {
@@ -609,7 +724,8 @@ header {
 }
 
 .login-left-side p {
-    font-size: 0.96vw;
+    font-family: "OpenSansBold";
+    font-size: 0.86vw;
     margin-top: 5%;
 }
 
@@ -633,14 +749,18 @@ header {
 }
 
 .btn-login-left-side {
+    cursor: pointer;
+    outline: none;
     background-color: transparent;
+    text-transform: uppercase;
+    font-family: "OpenSansBold";
     border: solid 3px white;
     color: white;
     padding: 12px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin: 5% 5% 5% 0;
 }
 
@@ -668,13 +788,15 @@ header {
 }
 
 .form-content h1 {
+    font-family: "DomaineDispNar-bold";
     margin-bottom: 15%; 
     text-align: center;
 }
 
 .form-content label {
+    font-family: "OpenSansBold";
+    color: #38393A;
     text-transform: uppercase;
-    font-weight: bold;
     font-size: 0.94vw;
 }
 
@@ -688,11 +810,13 @@ header {
 }
 
 .login-right-side button {
+    cursor: pointer;
     margin-bottom: 5%;
 }
 
 .register-left-side p {
-    font-size: 0.96vw;
+    font-family: "OpenSansBold";
+    font-size: 0.86vw;
     margin-top: 5%;
 }
 
@@ -709,38 +833,54 @@ header {
 }
 
 .btn-register-left-side {
+    cursor: pointer;
     background-color: transparent;
+    text-transform: uppercase;
+    font-family: "OpenSansBold";
     border: solid 3px white;
     color: white;
     padding: 12px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin: 10% 5% 5% 0;
 }
 
 .form-content button {
-    background-color: #BBD9D1;
+    
+    background-color: #C7E7DF;
     border: none;
+    border-radius: 0px;
     color: white;
-    padding: 12px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.96vw;
+    font-size: 0.86vw;
+    text-transform: uppercase;
+    width: 10vw;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "OpenSansBold";
+    display: inline-block;
     margin-top: -3%;
+}
+
+form-content button:hover {
+    background-color: #DCF0EB;
+    transition: 0.5s;
 }
 
 .login-right-side .form-content button {
     background-color: #BBD9D1;
     border: none;
     color: white;
-    padding: 12px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.96vw;
+    font-size: 0.86vw;
     margin-top: 5%;
     width: 40%;
     margin: auto;
@@ -775,6 +915,7 @@ header {
 }
 
 .fa-times {
+    cursor: pointer;
     margin-left: 93%;
     margin-top: 3%;
 }
@@ -784,26 +925,78 @@ header {
 }
 /* css du sous menu deroulant actualithé */
 .dropdown-menu {
-    margin-top: 28%;
+    margin-top: 22%;
     width: 100vw;
     margin-left: -32vw;
     height: 10vh;
+    border: none;    color: #38393A;
+        box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
 }
 
 .dropdown-menu2 {
-    margin-top: 32%;
-    margin-left: -42vw;
-    width: 99vw;  
-    height: 18vh; 
+    margin-top: 22%;
+    margin-left: -47vw;
+    width: 100.4vw;  
+    height: 35vh; 
+    border: none;    color: #38393A;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-menu2 img {
+    width: 30vw;
+    height: 25vh;
+    margin-left: 3vw;
+    border: none;    color: #38393A;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-menu a {
+    font-family: "OpenSansSemiBold";
+    text-transform: capitalize;
+}
+
+.dropdown-menu h4 {
+    font-family: "OpenSansBold";
+    text-transform: uppercase;
+}
+
+.dropdown-menu3 a {
+    text-transform: uppercase;
+    width: 20vw;
+    display: flex;
+}
+
+.img-btn {
+    display: flex;
+    flex-direction: row;
+}
+
+.img-btn button {
+    position: absolute;
+    background-color: white;
+    border: white;
+    width: 15vw;
+    height: 2.5vw;;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.86vw;
+    margin-top: 10vh;
+    margin-left: 11vw;
+    text-transform: uppercase;
 }
 
 .dropdown-menu3 {
     margin-left: -83VW;
-    width: 99vw;
-    margin-top: 86%;
+    width: 100vw;
+    margin-top: 22%;
 }
 
-.dropdown-menu2 a {
+.dropdown-menu3 h4 {
+    text-align: center;
+}
+
+.dropdown-menu2 button {
     text-decoration: none;
     color: black;
 }
@@ -820,7 +1013,14 @@ header {
     flex-direction: column;
 }
 
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: white;
+}
 
+.dropdown-menu2 .dropdown-items {
+    width: 15%;
+    margin-left: -20vw;
+}
 
 /* css de la page actualithé */
 
@@ -1084,7 +1284,7 @@ header {
 }
 
 .profile-content textarea{
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 
 .overflow p{
@@ -1092,4 +1292,3 @@ header {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
