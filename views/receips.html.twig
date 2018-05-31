@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Cool Framework{% endblock %}
+{% block content %}
+
+    <div class="actualithe-title">
+        <h1 class="receips-title">Plats cuisinés</h1>
+        <div class="underline underline-actualithe"></div>
+    </div>
+    <section class="principal-actualithes">
+        <div class="principal-actualithes-article">
+            <img src="http://www.conseilsdefamille.com/wp-content/uploads/2015/12/saumon_83594752_wb-1764x700.jpg" alt="">
+            <div class="principal-article-label receips-label">
+                <h2>Saumon au thé vert</h2><br>
+                <p>
+                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée. <br>
+                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur <br> que va apporter
+                    ce légé goût de thé.
+                </p>
+                <span>18 MAI 2018</span>
+            </div>
+        </div>
+    </section>
+    <section class="other-receips">
+      
+    </section>
+{% endblock %}
+{% block script %}
+    {% if username is not defined %}
+        <script src="assets/script/home.js"></script>
+    {% endif %}
+{% endblock %}

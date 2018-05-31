@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Cool Framework{% endblock %}
+{% block content %}
+    <section class="principal-actualithes principal-receips-article">
+        <div class="principal-actualithes-article">
+            <img src="http://www.conseilsdefamille.com/wp-content/uploads/2015/12/saumon_83594752_wb-1764x700.jpg" alt="">
+            <div class="principal-article-label receips-label receips-articles-label">
+                <h2>Saumon au thé vert</h2><br>
+                <p>
+                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée. <br>
+                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur <br> que va apporter
+                    ce légé goût de thé.
+                </p>
+                <span>18 MAI 2018</span>
+            </div>
+        </div>
+    </section>
+    <section class="other-receips">
+      <div class="receips-content receips-article-content">
+                <div class="img-left-side">
+                    <img src="./assets/images/home/the.jpg">
+                </div>
+                <div class="receips-right-side">
+                    <div class="receips-right-side-content">
+                        <h4>Saumon au thé vert</h4>
+                        <p>Découvrez notre nouvelle recette salée qui allie produit de la mer et thé !
+                        </p>
+                        <h5>Ingrédients</h5>
+                        <ul>
+                            <li>2 cuillères à soupe de the vert en feuilles (ou thé ert en sachet)</li>
+                            <li>2 tasses d'eau</li>
+                            <li>Zeste de citron ou lime</li>
+                            <li>1 cuillère à soupe de gingembre râpé</li>
+                            <li>3 gousses d'ail hâchées</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+    </section>
+{% endblock %}
+{% block script %}
+    {% if username is not defined %}
+        <script src="assets/script/home.js"></script>
+    {% endif %}
+{% endblock %}

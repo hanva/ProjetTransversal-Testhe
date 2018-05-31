@@ -51,26 +51,31 @@ class FormManager
             }
         }
     }
-    public function addArticle($userid, $title, $pic, $content, $recette, $tag)
+    public function addArticle($userid, $title, $pic, $content, $recette, $recetteIngredients, $tag)
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         $creation = date('Y-m-d H:i:s');
-        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `user_id`, `title`, `pic`, `content`,`creation`,`is_recette`) VALUES (NULL, :user_id, :title, :pic, :content, :creation ,:is_recette)');
+        $likes = 0;
+        $result = $pdo->prepare('INSERT INTO `articles` (`id`, `title` , `user_id`, `pic`, `content`,`creation`,`is_recette`,`recette_ingredients`,`likes`) VALUES (NULL, :title ,:user_id, :pic, :content, :creation ,:is_recette,:recette_ingredients,:likes)');
         $result->bindParam(':user_id', $userid);
         $result->bindParam(':title', $title);
         $result->bindParam(':pic', $pic);
         $result->bindParam(':content', $content);
         $result->bindParam(':creation', $creation);
         $result->bindParam(':is_recette', $recette);
+        $result->bindParam(':recette_ingredients', $recetteIngredients);
+        $result->bindParam(':likes', $likes);
         $result->execute();
         $articleId = $pdo->lastInsertId();
-        $articleId = intval($articleId);
-        self::addTagToArticle($tag, $articleId);
-
+        if ($recette === "1") {
+            $articleId = intval($articleId);
+            self::addTagToArticle($tag, $articleId);
+        }
     }
     public function addTagToArticle($tag, $id)
     {
+        var_dump("cc");
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         if ($tag === "Plats cuisinés" or $tag === "Légumes" or $tag === "Tartes salées") {

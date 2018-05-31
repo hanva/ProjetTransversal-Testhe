@@ -8,6 +8,6 @@ class FilesManager
     {
         $uploaddir = './uploads/';
         $uploadfile = $uploaddir . basename($pic);
-        move_uploaded_file($_FILES['picture']['tmp_name'], $uploadfile);
+        var_dump(move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile));
     }
 }

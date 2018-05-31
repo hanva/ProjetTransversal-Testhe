@@ -12,9 +12,18 @@ class MainController extends BaseController
 {
     public function homeAction()
     {
-        $data = [];
+        $articleManager = new ArticleManager();
+        $tbArticle1 = $articleManager->selectArticleByArticleTitle("Camellia Assamica");
+        $tbArticle2 = $articleManager->selectArticleByArticleTitle("Rooibos");
+        $data = [
+            'tbArticle1' => $tbArticle1,
+            'tbArticle2' => $tbArticle2,
+        ];
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
+            if (isset($_GET['addArticle']) && $_GET['addArticle'] == 1) {
+                $data['addArticle'] = true;
+            }
         }
         return $this->render('home.html.twig', $data);
 
@@ -151,6 +160,33 @@ class MainController extends BaseController
             $data['username'] = $_SESSION['username'];
         }
         return $this->render('article.html.twig', $data);
+
+    }
+
+    public function receipsAction()
+    {
+        $data = [];
+        if (empty($_SESSION['username']) === false) {
+            $data['username'] = $_SESSION['username'];
+        }
+        return $this->render('receips.html.twig', $data);
+
+    }
+
+    public function receipsArticleAction()
+    {
+        $data = [];
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->seeAllArticles();
+        $articlekeys = $articleManager->seeArticleKeys();
+        $data = [
+            'articles' => $articles,
+            'articlekeys' => $articlekeys,
+        ];
+        if (empty($_SESSION['username']) === false) {
+            $data['username'] = $_SESSION['username'];
+        }
+        return $this->render('receipsArticle.html.twig', $data);
 
     }
 }

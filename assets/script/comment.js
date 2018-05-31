@@ -34,7 +34,7 @@ function json(response) {
 function createComment(username, content) {
     var articleDiv = $('<div class="article-comments">');
     var articleTitle = $(' <h4 ></h4>').text(username);
-    var articleContent = $('<p></p>').html(content);
+    var articleContent = $('<p></p></div>').html(content);
     articleDiv.append(articleTitle);
     articleDiv.append(articleContent);
     $('.commentsection').prepend(articleDiv);
