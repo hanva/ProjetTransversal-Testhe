@@ -12,17 +12,27 @@ class UserController extends BaseController
     {
         $articleMangager = new ArticleManager();
         $userManager = new UserManager();
+        if (empty($_SESSION['username'])) {
+            return json_encode("not connected");
+        }
         $userId = $userManager->getUserId($_SESSION['username']);
-        $isLiked = $articleMangager->searchLikeById($userId, $_GET['id']);
         if (isset($_GET['id'])) {
+            $isLiked = $articleMangager->searchLikeById($userId, $_GET['id']);
+            $other = $articleMangager->unlike($userId, $_GET['otherid']);
             if ($isLiked === false) {
                 $likes = $articleMangager->like($userId, $_GET['id']);
             } else {
                 $likes = $articleMangager->unlike($userId, $_GET['id']);
             }
-            return json_encode($likes);
+            $data = [
+                'likes' => $likes,
+                'other' => $other,
+            ];
+            return json_encode($data);
+        } else {
+            $data = $articleMangager->searchLikesByUser($userId);
         }
-        return json_encode($isLiked);
+        return json_encode($data);
     }
     public function writeCommentAction()
     {

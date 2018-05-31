@@ -138,6 +138,15 @@ class ArticleManager
         return true;
 
     }
+    public function searchLikesByUser($userId)
+    {
+        $dbm = DBManager::getInstance();
+        $pdo = $dbm->getPdo();
+        $result = $pdo->query("SELECT article_id FROM likes where user_id = $userId");
+        $result = $result->fetch(PDO::FETCH_COLUMN);
+        return $result;
+
+    }
     public function like($userId, $articleId)
     {
         $dbm = DBManager::getInstance();
@@ -161,15 +170,23 @@ class ArticleManager
     {
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
-        $result = $pdo->query("SELECT likes FROM articles where id = $articleId");
-        $likes = $result->fetch(PDO::FETCH_COLUMN);
-        $likes--;
-        $stmt = $pdo->prepare("UPDATE articles SET likes=$likes WHERE id = $articleId");
-        $stmt->execute();
+        $stmt = $pdo->query("SELECT * FROM likes where article_id = $articleId and user_id=$userId");
+        $result = $stmt->fetch(PDO::FETCH_COLUMN);
+        if ($result !== false) {
+            $stmt = $pdo->query("DELETE FROM likes where article_id = $articleId and user_id=$userId");
+            $stmt->execute();
 
-        $stmt = $pdo->query("DELETE FROM likes where article_id = $articleId");
-        $stmt->execute();
+            $result = $pdo->query("SELECT likes FROM articles where id = $articleId");
+            $likes = $result->fetch(PDO::FETCH_COLUMN);
+            $likes--;
+            $stmt = $pdo->prepare("UPDATE articles SET likes=$likes WHERE id = $articleId");
+            $stmt->execute();
+            return $likes;
+        } else {
+            $result = $pdo->query("SELECT likes FROM articles where id = $articleId");
+            $likes = $result->fetch(PDO::FETCH_COLUMN);
+            return $likes;
+        }
 
-        return $likes;
     }
 }

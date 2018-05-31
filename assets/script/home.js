@@ -7,7 +7,6 @@ var popregister = document.querySelector(".register-content")
 var poppassword = document.querySelector(".password-content")
 var loginpop = document.querySelector(".login-content")
 var grey = document.querySelector(".grayBack");
-console.log(register);
 
 for (var i = 0; i < register.length; i++) {
     register[i].onclick = function () {
