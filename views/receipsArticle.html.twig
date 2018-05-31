@@ -8,36 +8,37 @@
             <div class="principal-article-label receips-label receips-articles-label">
                 <h2>Saumon au thé vert</h2><br>
                 <p>
-                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée. <br>
-                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur <br> que va apporter
-                    ce légé goût de thé.
+                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée.
+                    <br>
+                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur
+                    <br>
+                    que va apporter ce légé goût de thé.
                 </p>
                 <span>18 MAI 2018</span>
             </div>
         </div>
     </section>
     <section class="other-receips">
-      <div class="receips-content receips-article-content">
-                <div class="img-left-side">
-                    <img src="./assets/images/home/the.jpg">
-                </div>
-                <div class="receips-right-side">
-                    <div class="receips-right-side-content">
-                        <h4>Saumon au thé vert</h4>
-                        <p>Découvrez notre nouvelle recette salée qui allie produit de la mer et thé !
-                        </p>
-                        <h5>Ingrédients</h5>
-                        <ul>
-                            <li>2 cuillères à soupe de the vert en feuilles (ou thé ert en sachet)</li>
-                            <li>2 tasses d'eau</li>
-                            <li>Zeste de citron ou lime</li>
-                            <li>1 cuillère à soupe de gingembre râpé</li>
-                            <li>3 gousses d'ail hâchées</li>
-                        </ul>
+        <div class="receips-content receips-article-content">
+            <div class="img-left-side">
+                <img src="./uploads/{{article.pic}}">
+            </div>
+            <div class="receips-right-side">
+                <div class="receips-right-side-content">
+                    <h4>{{article.title}}</h4>
+                    <p>
+                        {{ article.content|raw }}
+                    </p>
+                    <h5>Ingrédients</h5>
+                    <ul>
+                        {% for ingredient in ingredients %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
 
-                    </div>
                 </div>
             </div>
+        </div>
     </section>
 {% endblock %}
 {% block script %}

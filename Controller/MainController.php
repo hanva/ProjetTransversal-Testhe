@@ -159,25 +159,20 @@ class MainController extends BaseController
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }
-        return $this->render('article.html.twig', $data);
+        if ($article['is_recette'] === 0) {
+            return $this->render('article.html.twig', $data);
+        } else {
+            $data['ingredients'] = explode(",", $article['recette_ingredients']);
+            return $this->render('receipsArticle.html.twig', $data);
+        }
 
     }
 
     public function receipsAction()
     {
         $data = [];
-        if (empty($_SESSION['username']) === false) {
-            $data['username'] = $_SESSION['username'];
-        }
-        return $this->render('receips.html.twig', $data);
-
-    }
-
-    public function receipsArticleAction()
-    {
-        $data = [];
         $articleManager = new ArticleManager();
-        $articles = $articleManager->seeAllArticles();
+        $articles = $articleManager->seeAllRecettes();
         $articlekeys = $articleManager->seeArticleKeys();
         $data = [
             'articles' => $articles,
@@ -186,7 +181,7 @@ class MainController extends BaseController
         if (empty($_SESSION['username']) === false) {
             $data['username'] = $_SESSION['username'];
         }
-        return $this->render('receipsArticle.html.twig', $data);
+        return $this->render('receips.html.twig', $data);
 
     }
 }

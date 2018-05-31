@@ -75,7 +75,6 @@ class FormManager
     }
     public function addTagToArticle($tag, $id)
     {
-        var_dump("cc");
         $dbm = DBManager::getInstance();
         $pdo = $dbm->getPdo();
         if ($tag === "Plats cuisinés" or $tag === "Légumes" or $tag === "Tartes salées") {
