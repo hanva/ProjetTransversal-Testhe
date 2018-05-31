@@ -13,16 +13,39 @@
             <div class="principal-article-label receips-label">
                 <h2>Saumon au thé vert</h2><br>
                 <p>
-                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée. <br>
-                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur <br> que va apporter
-                    ce légé goût de thé.
+                    Un pavé de saumon cuit avec un légé fond de thé et servi avec une sauce à base de canneberge séchée.
+                    <br>
+                    Ce saumon cuit une trentaine de minutes sera à la fois fondant et appétissant avec cette douceur
+                    <br>
+                    que va apporter ce légé goût de thé.
                 </p>
                 <span>18 MAI 2018</span>
             </div>
         </div>
     </section>
-    <section class="other-receips">
-      
+    <section class="other-actualithes" id="inteaview">
+        {% set compt = 0 %}
+        {% set count = 0 %}
+        {% for article in articles %}
+            {% if compt is divisible by(3) %}
+                <div class="other-actualithes-row">
+                {% endif %}
+                <div class="card" style="width: 18rem;">
+                    <img name="image" class='{{articlekeys[count]}}' src='./uploads/{{article.pic}}'>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{article.title}}</h5>
+                        <div class="card-text overflow">
+                            {{ article.content|raw }}</div>
+                        <a href="?action=article&article={{article.id}}" class="btn btn-outline-info articles-btn">Lire</a>
+                    </div>
+                </div>
+                {% set count = count + 1 %}
+                {% set compt = compt + 1 %}
+                {% if compt is divisible by(3) %}
+                </div>
+            {% endif %}
+        {% endfor %}
     </section>
 {% endblock %}
 {% block script %}
